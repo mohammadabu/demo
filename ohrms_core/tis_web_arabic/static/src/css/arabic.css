@@ -1449,9 +1449,7 @@ nav.navbar .container-fluid {
     align-items: center;
     justify-content: space-between;
 }
-@media (min-width: 768px)
-.container-fluid {
-}
+@media (min-width: 768px){
 .container-fluid {
     width: 100%;
     padding-right: 16px;
@@ -1477,7 +1475,8 @@ nav.navbar .navbar-holder {
 .justify-content-between {
     justify-content: space-between !important;
 }
-@media (min-width: 768px)
+}
+@media (min-width: 768px){
 .navbar-header {
     float: right;
 }
@@ -1527,12 +1526,14 @@ nav.navbar .nav-menu {
     padding-right: 0;
     padding-left: initial;
 }
-@media (min-width: 768px)
+
+}
+@media (min-width: 768px){
 .align-items-md-center {
     align-items: center !important;
 }
-
-@media (min-width: 768px)
+}
+@media (min-width: 768px){
 .flex-md-row {
     flex-direction: row !important;
 }
@@ -1613,15 +1614,16 @@ nav.navbar .brand-text {
 
 .inner-add-form-group.inner-add-file-group label {    width: fit-content !important;color:#fff }
 
+}
 
-
-@media (min-width: 768px)
+@media (min-width: 768px){
 .d-md-inline-block {
     display: inline-block !important;
 }
 .o_menu_sections {
     float: right !important;
     list-style: none !important;
+}
 }
 /* .o_content .o_form_view .o_form_statusbar, .modal-content .o_form_view .o_form_statusbar {
     z-index: 0 !important;
