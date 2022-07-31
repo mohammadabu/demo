@@ -23,22 +23,22 @@
                         <div class="search-results col-md-10 ml-auto mr-auto"/>
                     </div>
 
-                <div class="nav-container">
-                    <div class="app-menu">
-                        <t t-foreach="widget.getApps()" t-as="app">
-                            <a role="menuitem" t-attf-href="#menu_id=#{app.menuID}"
-                               class="dropdown-item o_app mt0"
-                               t-att-data-menu-id="app.menuID"
-                               t-att-data-menu-xmlid="app.xmlID"
-                               t-att-data-action-id="app.actionID">
-                                    <img t-att-title="app.name"
-                                         style="width: 50px !important;height: 50px !important;border-radius: 5px !important;margin: 5px 5px 5px 5px;"
-                                         t-attf-src="#{app.webIcon}"/>
-                                <b class="a_app_menu_title"><t t-esc="app.name"/></b>
-                            </a>
-                        </t>
-                    </div>
-                    </div>
+                    <!-- <div class="nav-container"> -->
+                        <div class="app-menu">
+                            <t t-foreach="widget.getApps()" t-as="app">
+                                <a role="menuitem" t-attf-href="#menu_id=#{app.menuID}"
+                                class="dropdown-item o_app mt0"
+                                t-att-data-menu-id="app.menuID"
+                                t-att-data-menu-xmlid="app.xmlID"
+                                t-att-data-action-id="app.actionID">
+                                        <img t-att-title="app.name"
+                                            style="width: 50px !important;height: 50px !important;border-radius: 5px !important;margin: 5px 5px 5px 5px;"
+                                            t-attf-src="#{app.webIcon}"/>
+                                    <b class="a_app_menu_title"><t t-esc="app.name"/></b>
+                                </a>
+                            </t>
+                        </div>
+                    <!-- </div> -->
                 </div>
             </li>
         </t>
