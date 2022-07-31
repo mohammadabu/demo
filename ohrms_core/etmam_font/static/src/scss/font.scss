@@ -1,27 +1,3 @@
-// @font-face{
-//     font-family: Tajawal-Black;
-//     src: url(/etmam_font/static/src/font/Tajawal-Black.ttf);
-// }
-// @font-face{
-//     font-family: Tajawal-Bold;
-//     src: url(/etmam_font/static/src/font/Tajawal-Bold.ttf);
-// }
-// @font-face{
-//     font-family: Tajawal-ExtraBold;
-//     src: url(/etmam_font/static/src/font/Tajawal-ExtraBold.ttf);
-// }
-// @font-face{
-//     font-family: Tajawal-ExtraLight;
-//     src: url(/etmam_font/static/src/font/Tajawal-ExtraLight.ttf);
-// }
-// @font-face{
-//     font-family: Tajawal-Light;
-//     src: url(/etmam_font/static/src/font/Tajawal-Light.ttf);
-// }
-// @font-face{
-//     font-family: Tajawal-Medium;
-//     src: url(/etmam_font/static/src/font/Tajawal-Medium.ttf);
-// }
 @font-face{
     font-family: Tajawal-Regular;
     src: url(/etmam_font/static/src/font/Tajawal-Regular.ttf);
@@ -63,8 +39,6 @@
     font-family: The-Sans-Plain-b;
     src: url(/etmam_font/static/src/font/THESANSARABIC-BOLD.ttf);
   }
-body{
-  font-family: The-Sans-Plain !important;
-    // font-family: Cairo !important;
-    // font-family: Tajawal-Regular !important;
-}
+  body{
+    font-family: The-Sans-Plain !important;
+  }
