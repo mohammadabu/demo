@@ -1,0 +1,92 @@
+.nav-menu .nav-item ul {
+    margin: 0px !important;
+    float: left !important;
+    list-style: none !important;
+    padding: 0px;
+}
+.o_menu_systray li {
+    float: left !important;
+    margin: 10px !important;
+}
+.o_menu_apps .full {
+    margin-top: 10px !important;
+}
+.align-items-center {
+    align-items: center !important;
+    width: 100% !important;
+}
+@media (max-width: 700px) {
+  .img-fluid {
+    max-width: 100% !important;
+    height: auto !important; 
+  }
+  .dropdown-menu.dropdown-menu-right.show {
+    margin: 0px !important;
+    padding: 0px !important;
+    min-width: 75% !important;
+    left: 0px !important;
+    right: 24.5vw !important;
+    width: 75% !important;
+    float: right !important;
+  }
+  nav.navbar .navbar-holder {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+}
+.o_main_navbar .o_user_menu .oe_topbar_avatar {
+    border-radius: 50% !important;
+    margin-right: 10px !important;
+}
+.o_menu_sections li {
+    float: left;
+    margin: 10px;
+}
+.o_main_navbar{
+  height: 100% !important;
+  background-color: initial !important;
+}
+/* #oe_main_menu_navbar{
+    z-index: 0 !important;
+} */
+.side-navbar li ul.collapse a:hover{
+    background: #F4F7FA !important;
+    color: #555 !important;
+}
+.o_main_navbar a {
+    color: #fff !important;
+}
+.o_menu_brand{
+  color: #fff;
+}
+.o_user_menu .dropdown-menu{
+  padding: 0px !important
+}
+.o_user_menu .dropdown-menu a {
+    width: 100% !important;
+    color: #000 !important;
+}
+nav.navbar .navbar-holder {
+    padding-left:230px;
+    padding-right: 0px;
+}
+.dropdown-menu a[data-menu='documentation']{
+    display: none !important;
+}
+
+.dropdown-menu a[data-menu='support']{
+    display: none !important;
+}
+
+.dropdown-menu a[data-menu='shortcuts']{
+    display: none !important;
+}
+
+.dropdown-menu a[data-menu='settings']{
+    display: none !important;
+}
+
+.dropdown-menu a[data-menu='account']{
+    display: none !important;
+}
+
