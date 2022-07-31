@@ -1,13 +1,13 @@
 <templates id="template" xml:space="preserve">
     <t t-extend="AppsMenu">
-        <t t-jquery=".dropdown" t-operation="replace">
+        <t t-jquery=".dropdown" t-operation="replace"> 
             <li class="dropdown">
                 <a class="full" data-toggle="dropdown" data-display="static" href="#">
                     <i class="fa fa-th-large" style="font-size: 16px !important;"/>
                 </a>
                 <div class="dropdown-menu" role="menu">
                     <div class="search-container form-row align-items-center m-auto mb-5 col-9">
-                        <div class="search-input col-md-10 ml-auto mr-auto mb-2">
+                        <div class="search-input col-md-10 ml-auto mr-auto mb-2"> 
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">

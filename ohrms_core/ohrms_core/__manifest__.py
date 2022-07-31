@@ -63,7 +63,8 @@
     'images': ['static/description/banner.gif'],
     'qweb': [
             'static/src/xml/link_view.xml',
-            'static/templates/side_bar.xml'],
+            # 'static/templates/side_bar.xml'
+            ],
     'license': 'AGPL-3',
     'installable': True,
     'auto_install': False,
