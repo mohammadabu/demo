@@ -145,8 +145,16 @@ html .o_web_client > .o_main .o_main_content .o_control_panel{
 @media (min-width: 992px){
   .mk_sidebar_type_small .o_action_manager {
     padding-right: 46px !important;
+    padding-left:unset !important;
   }
 }
+
+.o_tooltip_parent{
+  position: unset !important;
+  opacity: unset;
+
+}
+
 
 
 @media (max-width: 700px) {
