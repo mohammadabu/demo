@@ -142,6 +142,13 @@ html .o_web_client > .o_main .o_main_content .o_control_panel{
   text-align: right;
 
 }
+@media (min-width: 992px){
+  .mk_sidebar_type_small .o_action_manager {
+    padding-right: 46px !important;
+  }
+}
+
+
 @media (max-width: 700px) {
   .img-fluid {
     max-width: 100% !important;
@@ -1714,7 +1721,6 @@ a.dropdown-toggle.o-no-caret {
   border-bottom: 1px solid #7c7bae;
 }
 .o_menu_brand { line-height: normal!important;}
-
 
 
 
