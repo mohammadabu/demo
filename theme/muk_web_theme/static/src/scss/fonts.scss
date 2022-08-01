@@ -23,7 +23,7 @@
 $font-path-noto: '../fonts/Noto';
 $font-path-roboto: '../fonts/Roboto';
 
-@mixin mk-roboto-font-face($name, $weight, $style) {
+@mixin mk-roboto-font-face($name, $weight, $style) { 
 	@font-face {
         font-family: 'Noto';
         src: url('#{$font-path-noto}/Noto-#{$name}.eot');
@@ -36,7 +36,7 @@ $font-path-roboto: '../fonts/Roboto';
     }
     @font-face {
         font-family: 'Roboto';
-        src: url('#{$font-path-roboto}/Roboto-#{$name}.eot');
+        src: url('#{$font-path-roboto}/Roboto-#{$name}.eot'); 
         src: url('#{$font-path-roboto}/Roboto-#{$name}.eot?#iefix') format('embedded-opentype'),
              url('#{$font-path-roboto}/Roboto-#{$name}.woff') format('woff'),
              url('#{$font-path-roboto}/Roboto-#{$name}.ttf') format('truetype'),
@@ -44,6 +44,17 @@ $font-path-roboto: '../fonts/Roboto';
         font-weight: $weight;
         font-style: $style;
     }
+
+    @font-face {
+        font-family: The-Sans-Plain;
+        src: url(/muk_web_theme/static/src/font/The-Sans-Plain.otf);
+    }
+    @font-face {
+    font-family: The-Sans-Plain-b;
+    src: url(/etmam_font/static/src/font/THESANSARABIC-BOLD.ttf);
+    }
+
+
 }
 
 @include mk-roboto-font-face('Thin', 100, normal);
