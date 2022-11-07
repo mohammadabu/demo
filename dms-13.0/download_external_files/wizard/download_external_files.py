@@ -15,15 +15,17 @@ class DownloadExternalFiles(models.TransientModel):
         url = 'https://my.techsfactory.com/web/image/website/1/logo/TechsFactory?unique=b499f19'
         response = requests.get(url)
         response.raise_for_status()
-        _logger.info("response")
         _logger.info(response)
-        # if response.status_code != 204:
-        #     json_data = response.json()
-        #     _logger.info("json_data")
-        #     _logger.info(json_data)
-        # else:
-        #     _logger.info("response")
-        #     _logger.info(response)
+        try:
+            if response.status_code != 204:
+                json_data = response.json()
+                _logger.info("json_data")
+                _logger.info(json_data)
+            else:
+                _logger.info("response")
+                _logger.info(response)
+        except Exception as e:
+            _logger.info(str(e))      
         # loaded_json = json.dumps(json_data)
         # book = json_data['items'][0]
         # image_url = book["volumeInfo"]['imageLinks']['smallThumbnail'] // here contains image url such as thumbnail
