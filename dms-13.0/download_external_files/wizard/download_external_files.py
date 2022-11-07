@@ -17,7 +17,7 @@ class DownloadExternalFiles(models.TransientModel):
         response = requests.get(url)
         response.raise_for_status()
         _logger.info(response)
-        try:
+        try: 
             if response.status_code != 204:
                 self.env['dms.file'].sudo().create({
                     'name': "Test",
