@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 {
-    'name': 'Custom Upload Images',
+    'name': 'Download External Files',
     'version': '13.0.1.1.0',
     'depends': ['base','dms'], 
     'data': [
