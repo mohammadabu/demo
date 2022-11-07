@@ -13,6 +13,7 @@ class DownloadExternalFiles(models.TransientModel):
     def download_external_files(self):
         _logger.info("download_external_files")
         url = 'https://images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg?fm=jpg'
+        _logger.info(is_downloadable("https://images.ctfassets.net/yadj1kx9rmg0/wtrHxeu3zEoEce2MokCSi/cf6f68efdcf625fdc060607df0f3baef/quwowooybuqbl6ntboz3.jpg?fm=jpg"))
         response = requests.get(url)
         response.raise_for_status()
         _logger.info(response)
