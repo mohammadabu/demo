@@ -23,13 +23,13 @@
                 <field name="res_model">custom_upload_images.wizard</field>
                 <field name="type">ir.actions.act_window</field>
                 <field name="view_mode">form</field>
-                <field name="view_id" ref="custom_upload_images_report_view"/>
+                <!-- <field name="view_id" ref="custom_upload_images_report_view"/> -->
                 <field name="target">new</field>
             </record>
         <menuitem
             id="menu_dms_file_upload_images"
             name="Download External Files"
-            parent="cat_menu_dms_config_system"
+            parent="dms.cat_menu_dms_config_system"
             action="action_dms_file_download_external_files"
             sequence="9" 
         />
