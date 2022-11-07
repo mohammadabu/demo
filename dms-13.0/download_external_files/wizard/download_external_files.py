@@ -18,9 +18,9 @@ class DownloadExternalFiles(models.TransientModel):
         _logger.info(response)
         try:
             if response.status_code != 204:
-                json_data = response.json()
+                # json_data = response.json()
                 _logger.info("json_data")
-                _logger.info(json_data)
+                _logger.info(response.content)
             else:
                 _logger.info("response")
                 _logger.info(response)
