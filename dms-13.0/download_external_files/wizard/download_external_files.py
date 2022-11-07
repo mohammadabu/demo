@@ -12,7 +12,7 @@ class DownloadExternalFiles(models.TransientModel):
     # stages = fields.Many2many('project.project.stages')
     def download_external_files(self):
         _logger.info("download_external_files")
-        url = 'https://my.techsfactory.com/web/image/website/1/logo/TechsFactory?unique=b499f19'
+        url = 'https://images.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png'
         response = requests.get(url)
         response.raise_for_status()
         _logger.info(response)
