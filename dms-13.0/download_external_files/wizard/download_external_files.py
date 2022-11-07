@@ -15,7 +15,7 @@ class DownloadExternalFiles(models.TransientModel):
         url = 'https://my.techsfactory.com/web/image/website/1/logo/TechsFactory?unique=b499f19'
         response = requests.get(url)
         json_data = response.json()
-        loaded_json = json.dumps(json_data)
+        # loaded_json = json.dumps(json_data)
         # book = json_data['items'][0]
         # image_url = book["volumeInfo"]['imageLinks']['smallThumbnail'] // here contains image url such as thumbnail
         # img = base64.b64encode(requests.get(image_url).content)
