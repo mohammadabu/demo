@@ -1,6 +1,6 @@
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 {
-    "name": "web_widget_x2many_2d_matrix",
+    "name": "web_widget_x2many_2d_matrix example",
     "summary": "A small example on how to use `web_widget_x2many_2d_matrix`.",
     "version": "13.0.1.1.0",
     "author": "Camptocamp, " "Odoo Community Association (OCA)",
