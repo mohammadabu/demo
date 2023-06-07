@@ -1,0 +1,119 @@
+<odoo>
+    <data>
+        <record id="edit_sales_form_new_fields" model="ir.ui.view">
+            <field name="name">sale.order.form.new.fields</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="after">
+                    <div class="alert alert-warning oe_edit_only" role="alert" attrs="{'invisible': [('same_po_order_id', '=', False)]}">
+                        A Sale Order with the same PO Number already exists (
+                        <field name="same_po_order_id" />
+                        ), are you sure to create a new one?
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='validity_date']" position="before">
+                    <field name="deadline_date" />
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+                    <!-- <field name="deliveiry_address" widget="res_partner_many2one"/> -->
+                    <field name="po_is_required" invisible="1" />
+                    <field name="po_number" placeholder="PO Number" class="o_po_number" attrs="{'required': [('po_is_required', '=', True)]}" />
+                    <field name="po_file" class="o_po_file" attrs="{'required': [('po_is_required', '=', True)]}" />
+                    <!-- <field name="check_position" /> -->
+                </xpath>
+                <xpath expr="//header/button[@name='action_quotation_send'][1]" position="attributes">
+                    <attribute name="attrs">{'invisible': [('po_is_required', '=', True)]}</attribute>
+                </xpath>
+                <xpath expr="//header/button[@name='action_confirm'][2]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', ('po_is_required', '=', True), ('state', 'in', ['sale', 'done', 'cancel'])]}</attribute>
+                </xpath>
+                <xpath expr="//notebook/page/field/form/group/group[1]/field[@name='product_id']" position="attributes">
+                    <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='payment_term_id']" position="attributes" >
+                    <attribute name="readonly">1</attribute>
+                    <attribute name="force_save">1</attribute>
+                </xpath>
+                <!-- <xpath expr="//field[@name='partner_id']" position="attributes">
+                    <attribute name="options">{'no_create': [('check_position', '=', True)], 'no_create_edit':[('check_position', '=', True)]}</attribute>
+                </xpath> -->
+                <!-- <xpath expr="//field[@name='po_number']" position="before">
+                    <field name="partner_id" options="{ 'no_create': [('check_position', '=', True)], 
+                                                        'no_create_edit':[('check_position', '=', True)]}"/>
+                </xpath> -->
+                <xpath expr="//page/field[@name='order_line']/tree/field[@name='qty_invoiced']" position="before">
+                    <field name="is_qty_delivered_less" invisible="1" />
+                    <field name="qty_delivered_is_less" decoration-danger="True" optional="show" widget="badge" attrs="{'invisible':[('is_qty_delivered_less', '=', True)]}" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="edit_sale_order_field_tree" model="ir.ui.view">
+            <field name="name">sale.order.tree</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="po_number" />
+                    <field name="deadline_date" />
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Custom Filter in qutations -->
+        <record id="sale_search_form_view" model="ir.ui.view">
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='campaign_id']" position="after">
+                    <separator />
+                    <field name="po_number" />
+                    <separator />
+                    <field name="validity_date" />
+                    <separator />
+                    <field name="deadline_date" />
+                    <separator />
+                    <filter string="Delivered Quantity Less Than Ordered" name="order_line" domain="[('order_line.qty_delivered_is_less','!=', ' ')]" />
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Add Action to dropdown menu -->
+        <record id="model_sale_order_action_compute_lines" model="ir.actions.server">
+            <field name="name">Compute Sale Lines</field>
+            <field name="model_id" ref="sale.model_sale_order"/>
+            <field name="binding_model_id" ref="sale.model_sale_order"/>
+            <field name="binding_view_types">form,list</field>
+            <field name="state">code</field>
+            <field name="code">action = records.action_compute_lines()</field>
+        </record>
+
+        <!-- stock picking -->
+        <record id="edit_stock_picking_new_fields" model="ir.ui.view">
+            <field name="name">stock.picking.form.new.fields</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_deadline']" position="after">
+                    <field name="sale_deadline_date" />
+                </xpath>
+                <xpath expr="//field[@name='location_id']" position="after">
+                    <field name="is_pickup" invisible="1" />
+                    <field name="delivery_status" attrs="{'invisible': [('is_pickup', '=', False)]}" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="edit_stock_picking_tree" model="ir.ui.view">
+            <field name="name">stock.picking.tree</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.vpicktree" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date_deadline']" position="after">
+                    <field name="sale_deadline_date" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

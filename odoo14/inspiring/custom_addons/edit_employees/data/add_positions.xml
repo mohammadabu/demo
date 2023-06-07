@@ -1,0 +1,96 @@
+<odoo>
+    <data noupdate="1">
+        <record id="custom_ceo" model="hr.job">
+            <field name="name">CEO</field>
+            <field name="internal_id">ceo</field>
+        </record>
+        <record id="custom_gm" model="hr.job">
+            <field name="name">General Manager</field>
+            <field name="internal_id">general_manager</field>
+        </record>
+        <record id="custom_chairman_of_board_of_directors" model="hr.job">
+            <field name="name">Chairman of Board of Directors</field>
+            <field name="internal_id">chairman_of_board_of_directors</field>
+        </record>
+        <record id="custom_information_systems_analyst" model="hr.job">
+            <field name="name">Information Systems Analyst</field>
+            <field name="internal_id">information_systems_analyst</field>
+        </record>
+        <record id="custom_senior_supply_chain_analyst" model="hr.job">
+            <field name="name">Senior Supply Chain Analyst</field>
+            <field name="internal_id">senior_supply_chain_analyst</field>
+        </record>
+        <record id="custom_graphic_designer" model="hr.job">
+            <field name="name">Graphic Designer</field>
+            <field name="internal_id">graphic_designer</field>
+        </record>
+        <record id="custom_sales_development_manager" model="hr.job">
+            <field name="name">Sales Development Manager</field>
+            <field name="internal_id">sales_development_manager</field>
+        </record>
+        <record id="custom_project_manager" model="hr.job">
+            <field name="name">Project Manager</field>
+            <field name="internal_id">project_manager</field>
+        </record>
+        <record id="custom_senior_accountant" model="hr.job">
+            <field name="name">Senior Accountant</field>
+            <field name="internal_id">senior_accountant</field>
+        </record>
+        <record id="custom_human_resource_specialist" model="hr.job">
+            <field name="name">Human Resource Specialist</field>
+            <field name="internal_id">human_resource_specialist</field>
+        </record>
+        <record id="custom_projects_coordinator" model="hr.job">
+            <field name="name">Projects Coordinator</field>
+            <field name="internal_id">projects_coordinator</field>
+        </record>
+        <record id="custom_project_management_specialist" model="hr.job">
+            <field name="name">Project Management Specialist</field>
+            <field name="internal_id">project_management_specialist</field>
+        </record>
+        <record id="custom_government_services_and_human_resources_officer" model="hr.job">
+            <field name="name">Government Services and Human Resources Officer</field>
+            <field name="internal_id">government_services_and_human_resources_officer</field>
+        </record>
+        <record id="custom_accountant" model="hr.job">
+            <field name="name">Accountant</field>
+            <field name="internal_id">accountant</field>
+        </record>
+        <record id="custom_deputy_sales_manager" model="hr.job">
+            <field name="name">Deputy Sales Manager</field>
+            <field name="internal_id">deputy_sales_manager</field>
+        </record>
+        <record id="custom_head_of_technical_support_department" model="hr.job">
+            <field name="name">Head of Technical Support Department</field>
+            <field name="internal_id">head_of_technical_support_department</field>
+        </record>
+        <record id="custom_personal_driver" model="hr.job">
+            <field name="name">Personal Driver</field>
+            <field name="internal_id">personal_driver</field>
+        </record>
+        <record id="custom_warehouse_supervisor" model="hr.job">
+            <field name="name">Warehouse Supervisor</field>
+            <field name="internal_id">warehouse_supervisor</field>
+        </record>
+        <record id="custom_warehouse_and_delivery_manager" model="hr.job">
+            <field name="name">Warehouse and Delivery Manager</field>
+            <field name="internal_id">warehouse_and_delivery_manager</field>
+        </record>
+        <record id="custom_seller_assistant" model="hr.job">
+            <field name="name">Seller's Assistant</field>
+            <field name="internal_id">seller_assistant</field>
+        </record>
+        <record id="custom_sales_coordinator" model="hr.job">
+            <field name="name">Sales Coordinator</field>
+            <field name="internal_id">sales_coordinator</field>
+        </record>
+        <record id="custom_sales_manager" model="hr.job">
+            <field name="name">Sales Manager</field>
+            <field name="internal_id">sales_manager</field>
+        </record>
+        <record id="custom_sales_representative" model="hr.job">
+            <field name="name">Sales Representative</field>
+            <field name="internal_id">sales_representative</field>
+        </record>
+    </data>
+</odoo>

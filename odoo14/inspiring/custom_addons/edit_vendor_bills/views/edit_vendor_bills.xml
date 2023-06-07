@@ -1,0 +1,44 @@
+<odoo>
+    <data>
+        <record id="edit_vendor_bills" model="ir.ui.view">
+            <field name="name">Edit Vendor Bills</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='partner_bank_id']" position="before">
+                    <field name="bill_type"  attrs="{'invisible': [('move_type', 'not in', ('in_invoice', 'in_refund', 'in_receipt'))]}"/>
+                </xpath>
+                <xpath expr="//group/group[2]" position="inside">
+                    <field name="attachment" />
+                </xpath>
+                <xpath expr="//group/group[1]/label[@for='ref']" position="attributes">
+                    <attribute name="string">Vendor Bill no.</attribute>
+                </xpath>
+                <xpath expr="//header" position="after">
+                    <div class="alert alert-info" role="alert" style="height: 40px; margin-bottom:0px;"
+                         attrs="{'invisible':['|',('state','not in',('draft')), ('move_type', 'not in', ('in_invoice', 'in_refund', 'in_receipt'))]}">
+                         Change Accounts in Journal Items when appropriate
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="edit_vendor_bills_tree" model="ir.ui.view">
+            <field name="name">account.out.invoice.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_in_invoice_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="import">false</attribute>
+               </xpath>
+                <xpath expr="//field[@name='ref']" position="attributes">
+                    <attribute name="string">Vendor Bill no.</attribute>
+                </xpath>      
+                <xpath expr="//field[@name='amount_total_signed']" position="after">
+                    <field name="currency_id" />
+                </xpath>       
+            </field>                               
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- SALE MARGIN REPORT WIZARD VIEW -->
+    <record model="ir.ui.view" id="sales_margin_form_view_omax">
+        <field name="name">Sales Margin Report</field>
+        <field name="model">sale.margin.report.wizard</field>
+        <field name="arch" type="xml">
+            <form string="">
+                <group>
+                    <group>
+                        <field name="start_date"/>
+                        <field name="end_date"/>
+                    </group>
+                    <group>
+                        <field name="company_ids" widget="many2many_tags"/>
+                        <field name="user_ids" widget="many2many_tags"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string="PDF Report" name="print_sale_margin_pdf" type="object" class="oe_highlight"/>
+                    <button string="Print Excel" name="print_sale_margin_excel" type="object" class="oe_highlight"/>
+                    or
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- FORM VIEW OF FINAL EXCEL REPORT -->
+    <record id="view_sale_margin_print_excel" model="ir.ui.view">
+        <field name="name">sale.margin.print.excel.form</field>
+        <field name="model">sale.margin.print.excel</field>
+        <field name="arch" type="xml">
+            <form >
+                <group>
+                    <b><h4>Click on the report file to download the excel file.</h4></b><br/>
+                </group>
+                <group>
+                    <field name="excel_file" readonly="1" filename="file_name"/>
+                    <field name="file_name" invisible="1"/>
+                </group>
+                <footer>
+                  <button string="Close" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <!--SALES MARGIN REPORT MENU ACTION -->
+    <record id="action_sales_margin_report_omax" model="ir.actions.act_window">
+        <field name="name">Sales Margin Report</field>
+        <field name="res_model">sale.margin.report.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <!-- SALES MARGIN REPORT MENU -->
+     <menuitem
+        id="sales_margin_report_omax_menu"
+        name="Sales Margin Report"
+		action="action_sales_margin_report_omax"
+        parent="sale.menu_sale_report"
+        sequence="4"
+        groups="sales_team.group_sale_manager"/>
+    
+</odoo>

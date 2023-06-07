@@ -1,0 +1,891 @@
+<odoo>
+    <data>
+        <template id="button_render_js" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script src="op_credit_limit/static/src/js/action_call.js" type="text/javascript" />
+            </xpath>
+        </template>
+
+        <template id="credit_request_font_template" name="credit_request" inherit_id="web.report_assets_pdf">
+            <xpath expr="." position="inside">
+                <link rel="stylesheet" href="/op_credit_limit/static/css/stylesheet.css" type="text/css" />
+            </xpath>
+        </template>
+
+
+        <template id="credit_request_template_1">
+            <div class="page" dir="rtl">
+                <style>
+                    p {
+                        font-size: 20px;
+                        line-height: 150%;
+                    }
+                    li {
+                        font-size: 18px;
+                        line-height: 150%;
+                    }
+
+                    td {
+                        line-height: 150%;
+                        padding-right: 5px;
+                    }
+                    
+                    
+                    </style>
+                <div class="container" style="text-align: left; height: 15%;">
+                    <div>
+                        <p>فرع الرياض</p>
+                    </div>
+
+                </div>
+                <div class="container" style="text-align: center;height: 300px; " dir="rtl">
+                    <div style="padding: 50px;">
+                        <p style="font-size: 40px; font-style:changa-Bod; ">طلب تسهيلات ائتمانية</p>
+                        <p style="font-size: 25px;">CREDIT APPLICATION</p>
+                        <p>
+                            اسم العميل:
+                            <span t-field="doc.partner_id" />
+                        </p>
+                        <p>
+                            المنطقة:
+                            <span t-field="doc.state_id" />
+                        </p>
+                    </div>
+                </div>
+                <div class="container" style="text-align: right; margin-top:150px; " dir="rtl">
+                    <div>
+                        <p>مرفقات الطلب</p>
+                        <ul>
+                            <li>شهادة تسجيل المؤسسة / الشركة (لمقدم الطلب)</li>
+                            <li>شهادة الإنتساب للغرفة التجارية (لمقدم الطلب)</li>
+                            <li>رخصة البلدية (لمقدم الطلب)</li>
+                            <li>شهادة التسجيل في ضريبة القيمة المضافة</li>
+                            <li>التأمينات الإجتماعية (لمقدم الطلب)</li>
+                            <li>هوية المالك أو الوكيل الشرعي مع صورة الوكالة (لمقدم الطلب)</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p style="page-break-before:always;"></p>
+            <div class="container" style="text-align: right; margin-top:150px; " dir="rtl">
+                <div>
+                    <li style="text-decoration: underline;">لإستعمال شركة (الحلول الملهمة للتجارة والإستراد)</li>
+                </div>
+                <div>
+                    <p style="">
+                        اسم المندوب
+                        <span t-field="doc.employee_id" />
+                        الرقم الوظيفي
+                        <span t-field="doc.employee_no" />
+                        فرع
+                        <span t-field="doc.employee_department" />
+                    </p>
+                    <p>
+                        تم تقديم هذا الطلب للشركة بمعرفتي وعليه يصبح
+                        <span t-field="doc.partner_id" />
+                        عميل خاص بي وتقع مسؤولية المتابعة والتحصيل منه في حال موافقة الشركة منحه التسهيلات الائتمانية
+                    </p>
+                    <p>
+                        توقيع مسئول المبيعات .................................................
+                      
+                    </p>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="container" style="text-align: right;  " dir="rtl">
+                <div>
+                    <li style="text-decoration: underline;">خاص بالإعتماد والموافقة</li>
+                    <p>يسري هذا الطلب بعد مراجعة الإدارة القانونية والإعتماد النهائي</p>
+                </div>
+                <br />
+                <div>
+                    <ul>
+                        <li>
+                            حدود التسهيلات الائمانية المسموح بها
+                            <span t-field="doc.credit_limit" />
+                            ريال سعودي فقط لا غير
+                        </li>
+                        <li>
+                            طريقة السداد المسموح بها
+                            <span t-field="doc.credit_payment_method" />
+                            يوما من تاريخ إستلام الفاتورة
+                        </li>
+                        <li>
+                            طريقة السداد في حالة سحب الائتمان منا او توقف / تصفية الشركة
+                            <span t-field="doc.credit_payment_method_other" />
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="container" style="text-align: right; padding-top:100px;  " dir="rtl">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:33%; text-align:center;">إعتماد مدير المبيعات</td>
+                        <td style="text-align:center;">اعتماد المدير المالي</td>
+                        <td style="width:33%;text-align:center;">اعتماد الشؤون القانونية</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            .................................................
+                        </td>
+                        <td style="text-align:center;">
+                            .................................................
+                        </td>
+                        <td style="text-align:center;">
+                            .................................................
+                        </td>
+                    </tr>
+
+                </table>
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:33%; text-align:center;    padding-top:50px;">إعتماد الرئيس التنفيذي</td>
+                        <td style="text-align:center;"></td>
+                        <td style="width:33%;text-align:center;"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            .................................................
+                        </td>
+                        <td style="text-align:center;"></td>
+                        <td style="text-align:center;"></td>
+                    </tr>
+
+                </table>
+            </div>
+            <p style="page-break-before:always;"></p>
+            <div class="container" style="text-align: left; margin-top:130px;  " dir="rtl">
+                <div style="text-align: left;">
+                    <p style="">
+                        التاريخ:
+                        <span t-field="doc.date_request" />
+                    </p>
+                </div>
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">لاستعمال مقدم الطلب</li>
+                    </ul>
+                </div>
+                <div style="text-align: right;">
+                    <table style="width:20%;">
+                        <tr>
+                            <td>
+                                <input type="checkbox" t-att-checked="doc.partner_new_old=='old'" />
+                            </td>
+                            <td>عميل سابق</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" t-att-checked="doc.partner_new_old=='new'" />
+                            </td>
+                            <td>عميل جديد</td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <div style="text-align: right;">
+                    <p>
+                        اسم مقدم الطلب (مؤسسة / شركة) شركة س . ت رقم
+                        <span t-field="doc.partner_cr" />
+                        ونوعها
+                        <input type="checkbox" t-att-checked="doc.partner_type=='individual'" />
+                        مؤسسة فردية
+                        <input type="checkbox" t-att-checked="doc.partner_type=='jv'" />
+                        شركة متضامنة
+                        <input type="checkbox" t-att-checked="doc.partner_type=='lc'" />
+                        شركة ذات مسؤولية محدودة
+                        <input type="checkbox" t-att-checked="doc.partner_type=='sh'" />
+                        مساهمة
+                    </p>
+                    <p>
+                        الرقم الضريبي
+                        <span t-field="doc.partner_vat" />
+                        هاتف
+                        <span t-field="doc.partner_phone" />
+                        وعنوانها
+                        <span t-field="doc.partner_address_1" />
+                        ومركز نشاطها التجاري
+                        <span t-field="doc.partner_official_location" />
+                        ونوع نشاطها التجاري
+                        <span t-field="doc.partner_official_activity" />
+                    </p>
+                </div>
+                <br />
+
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">اسم و عنوان المالك / الشركاء</li>
+                    </ul>
+                    <table style="width:100%;border: 1px solid black; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <td style="text-align: center; border: 1px solid black;">الاسم</td>
+                                <td style="text-align: center; border: 1px solid black;">الصفة</td>
+                                <td style="text-align: center; border: 1px solid black;">رقم الهاتف</td>
+                                <td style="text-align: center; border: 1px solid black;">العنوان</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.owner_ids" t-as="line">
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.name" />
+                                </td>
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.desc" />
+                                </td>
+                                <td>
+                                    <span t-field="line.phone" />
+                                </td>
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.address" />
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <br />
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">تفاصيل البنوك المتعامل عليها</li>
+                    </ul>
+                    <table style="width:100%;border: 1px solid black; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <td style="text-align: center; border: 1px solid black;">البنك</td>
+                                <td style="text-align: center; border: 1px solid black;">الفرع</td>
+                                <td style="text-align: center; border: 1px solid black;">رقم الحساب</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.bank_ids" t-as="line">
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.name" />
+                                </td>
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.branch" />
+                                </td>
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.acc" />
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <br />
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">المراجع التجارية</li>
+                    </ul>
+                    <table style="width:100%;border: 1px solid black; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <td style="text-align: center; border: 1px solid black;">اسم المؤسسة / الشركة</td>
+                                <td style="text-align: center; border: 1px solid black;">الهاتف</td>
+                                <td style="text-align: center; border: 1px solid black;"> العنوان</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.comref_ids" t-as="line">
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.name" />
+                                </td>
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.phone" />
+                                </td>
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.address" />
+                                </td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <br />
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">الأشخاص المفوضين بطلب و استلام البضاعة التجارية</li>
+                    </ul>
+                    <table style="width:100%;border: 1px solid black; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <td style="text-align: center; border: 1px solid black;">الاسم</td>
+                                <td style="text-align: center; border: 1px solid black;">المنصب</td>
+                                <td style="text-align: center; border: 1px solid black;"> الهاتف</td>
+                                <td style="text-align: center; border: 1px solid black;"> التوقيع</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="doc.mofawad_ids" t-as="line">
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.name" />
+                                </td>
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.job" />
+                                </td>
+                                <td style="text-align: right; border: 1px solid black;">
+                                    <span t-field="line.phone" />
+                                </td>
+                                <td></td>
+
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <br />
+                <div style="text-align: right;">
+                    <table style="width: 30%;">
+                        <tr>
+                            <td style="width: 10%;">
+                                <input type="checkbox" t-att-checked="doc.is_another_person_in_company" />
+                            </td>
+                            <td>أو أي شخص تحت الكفالة</td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">التسهيلات</li>
+                    </ul>
+                    <p>
+                        قيمة التسهيلات المطلوبة هي
+                        <span t-field="doc.credit_limit" />
+                        ريال سعودي فقط لا غير
+                    </p>
+                    <p>
+                        طريقة السداد المطلوبة هي
+                        <span t-field="doc.credit_payment_method" />
+                        يوما من تاريخ إستلام الفاتورة أو الزيادة عن فترة التسهيل أيهما أولا
+                    </p>
+                </div>
+                <div style="text-align: right;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li style="text-decoration: underline;">ضمانات أخري</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <input type="checkbox" t-att-checked="doc.other_gurantees=='checks'" />
+                            </td>
+                            <td>شيكات </td>
+                            <td>
+                                <input type="checkbox" t-att-checked="doc.other_gurantees=='rec'" />
+                            </td>
+                            <td>كمبيالات بتاريخ كل دفعة حسب الإتفاق</td>
+                        </tr>
+
+                    </table>
+                </div>
+                <p style="page-break-before:always;"></p>
+                <div style="text-align: right;" dir="rtl">
+                    <ul>
+                        <li style="text-decoration: underline;">تعهد مقدم الطلب</li>
+                    </ul>
+                    <p style="text-align:right;text-align: justify;text-justify: inter-word; line-height: 200%;">
+أتعهد أنا مقدم الطلب بأن البيانات المدرجة بهذا الطلب صحيحة وأنني المخول بتوقيع استمارة الائتمان و أتعهد في حالة قبول طلب الأئتمان من شركة الحلول الملهمة للتجارة والاستيراد بأننا نوافق علي تصفية المبالغ المستحقة فورا حسب السداد المعتمد في التسهيلات الممنوحة وفي حالة تجاوز المدة المحدودة للتسهيلات الممنوحة لنا نتعهد بتسديد الرصيد فورا أو بشيك فوري ونتعهد بسداد المستحقات الخاصة لشركة الحلول الملهمة للتجارة والاستيراد فورا حال توقف النشاط أو التصفية ونخول شركة الحلول الملهمة للتجارة والاستيراد للتأكد من استحقاقاتنا الإئتمانية والتجارية والتوقيع المعتمد لدي البنك الذي نتعامل معه والغرفة التجارية الموضحة في هذا الطلب
+                    </p>
+                </div>
+                <div style="text-align: right; margin-top: 100px;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width: 15%;">اسم مقدم الطلب: </td>
+                            <td>......................................................................</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;">المنصب الاداري: </td>
+                            <td>......................................................................</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;">التوقيع: </td>
+                            <td>......................................................................</td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="text-align: right; margin-top: 30px;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width: 50%;">
+                                <ul>
+                                    <li style="text-decoration: underline;">ختم الشركة</li>
+                                </ul>
+                            </td>
+                            <td style="width: 50%;">
+                                <ul>
+                                    <li style="text-decoration: underline;">تصديق الغرفة التجارية</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+            </div>
+        </template>
+
+        <template id="credit_request_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="op_credit_limit.credit_request_template_1" />
+                </t>
+            </t>
+        </template>
+
+        <!-- empty credit request -->
+        <template id="credit_request_report_2">
+            <t t-call="web.html_container">
+                <t t-call="op_credit_limit.credit_request_template_2" />
+            </t>
+        </template>
+
+        <template id="credit_request_template_2">
+            <div class="page" dir="rtl">
+                <style>
+                    p {
+                        font-size: 20px;
+                        line-height: 150%;
+                    }
+                    li {
+                        font-size: 18px;
+                        line-height: 150%;
+                    }
+
+                    td {
+                        line-height: 150%;
+                        padding-right: 5px;
+                    }
+                    
+                    
+                    </style>
+                <div class="container" style="text-align: left; height: 15%;">
+                    <div>
+                        <p>فرع الرياض</p>
+                    </div>
+
+                </div>
+                <div class="container" style="text-align: center;height: 300px; " dir="rtl">
+                    <div style="padding: 50px;">
+                        <p style="font-size: 40px; font-style:changa-Bod; ">طلب تسهيلات ائتمانية</p>
+                        <p style="font-size: 25px;">CREDIT APPLICATION</p>
+                        <p>
+                            اسم العميل:
+                        </p>
+                        <p>
+                            المنطقة:
+                        </p>
+                    </div>
+                </div>
+                <div class="container" style="text-align: right; margin-top:150px; " dir="rtl">
+                    <div>
+                        <p>مرفقات الطلب</p>
+                        <ul>
+                            <li>شهادة تسجيل المؤسسة / الشركة (لمقدم الطلب)</li>
+                            <li>شهادة الإنتساب للغرفة التجارية (لمقدم الطلب)</li>
+                            <li>رخصة البلدية (لمقدم الطلب)</li>
+                            <li>شهادة التسجيل في ضريبة القيمة المضافة</li>
+                            <li>التأمينات الإجتماعية (لمقدم الطلب)</li>
+                            <li>هوية المالك أو الوكيل الشرعي مع صورة الوكالة (لمقدم الطلب)</li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p style="page-break-before:always;"></p>
+            <div class="container" style="text-align: right; margin-top:150px; " dir="rtl">
+                <div>
+                    <li style="text-decoration: underline;">لإستعمال شركة (الحلول الملهمة للتجارة والإستراد)</li>
+                </div>
+                <div>
+                    <p style="">
+                        اسم المندوب
+                        <br />
+                        الرقم الوظيفي
+                        <br />
+                        فرع
+                    </p>
+                    <p>
+                        تم تقديم هذا الطلب للشركة بمعرفتي وعليه يصبح
+                        <br />
+                        عميل خاص بي وتقع مسؤولية المتابعة والتحصيل منه في حال موافقة الشركة منحه التسهيلات الائتمانية
+                    </p>
+                    <p>
+                        توقيع مسئول المبيعات .................................................
+                      
+                    </p>
+                </div>
+            </div>
+            <br />
+            <br />
+            <br />
+            <div class="container" style="text-align: right;  " dir="rtl">
+                <div>
+                    <li style="text-decoration: underline;">خاص بالإعتماد والموافقة</li>
+                    <p>يسري هذا الطلب بعد مراجعة الإدارة القانونية والإعتماد النهائي</p>
+                </div>
+                <br />
+                <div>
+                    <ul>
+                        <li>
+                            حدود التسهيلات الائمانية المسموح بها
+                            <br />
+                            ريال سعودي فقط لا غير
+                        </li>
+                        <li>
+                            طريقة السداد المسموح بها
+                            <br />
+                            يوما من تاريخ إستلام الفاتورة
+                        </li>
+                        <li>
+                            طريقة السداد في حالة سحب الائتمان منا او توقف / تصفية الشركة
+                             <br />
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="container" style="text-align: right; padding-top:100px;  " dir="rtl">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:33%; text-align:center;">إعتماد مدير المبيعات</td>
+                        <td style="text-align:center;">اعتماد المدير المالي</td>
+                        <td style="width:33%;text-align:center;">اعتماد الشؤون القانونية</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            .................................................
+                        </td>
+                        <td style="text-align:center;">
+                            .................................................
+                        </td>
+                        <td style="text-align:center;">
+                            .................................................
+                        </td>
+                    </tr>
+
+                </table>
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:33%; text-align:center;    padding-top:50px;">إعتماد الرئيس التنفيذي</td>
+                        <td style="text-align:center;"></td>
+                        <td style="width:33%;text-align:center;"></td>
+                    </tr>
+                    <tr>
+                        <td style="text-align:center;">
+                            .................................................
+                        </td>
+                        <td style="text-align:center;"></td>
+                        <td style="text-align:center;"></td>
+                    </tr>
+
+                </table>
+            </div>
+            <p style="page-break-before:always;"></p>
+            <div class="container" style="text-align: left; margin-top:130px;  " dir="rtl">
+                <div style="text-align: left;">
+                    <p style="">
+                        التاريخ:
+                        <br />
+                    </p>
+                </div>
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">لاستعمال مقدم الطلب</li>
+                    </ul>
+                </div>
+                <div style="text-align: right;">
+                    <table style="width:20%;">
+                        <tr>
+                            <td>
+                                <input type="checkbox" />
+                            </td>
+                            <td>عميل سابق</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="checkbox" />
+                            </td>
+                            <td>عميل جديد</td>
+                        </tr>
+                    </table>
+                </div>
+                <br />
+                <div style="text-align: right;">
+                    <p>
+                        اسم مقدم الطلب (مؤسسة / شركة) شركة س . ت رقم
+                        <br />
+                        ونوعها
+                        <input type="checkbox" />
+                        مؤسسة فردية
+                        <input type="checkbox" />
+                        شركة متضامنة
+                        <input type="checkbox" />
+                        شركة ذات مسؤولية محدودة
+                        <input type="checkbox" />
+                        مساهمة
+                    </p>
+                    <p>
+                        الرقم الضريبي
+                        <br />
+                        هاتف
+                        <br />
+                        وعنوانها
+                        <br />
+                        ومركز نشاطها التجاري
+                        <br />
+                        ونوع نشاطها التجاري
+                        <br />
+                    </p>
+                </div>
+                <br />
+
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">اسم و عنوان المالك / الشركاء</li>
+                    </ul>
+                    <table style="width:100%;border: 1px solid black; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px;">الاسم</td>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px;">الصفة</td>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px;">رقم الهاتف</td>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px;">العنوان</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <br />
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">تفاصيل البنوك المتعامل عليها</li>
+                    </ul>
+                    <table style="width:100%;border: 1px solid black; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px">البنك</td>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px">الفرع</td>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px">رقم الحساب</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <br />
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">المراجع التجارية</li>
+                    </ul>
+                    <table style="width:100%;border: 1px solid black; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px">اسم المؤسسة / الشركة</td>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px">الهاتف</td>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px"> العنوان</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+                <br />
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">الأشخاص المفوضين بطلب و استلام البضاعة التجارية</li>
+                    </ul>
+                    <table style="width:100%;border: 1px solid black; border-collapse: collapse;">
+                        <thead>
+                            <tr>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px">الاسم</td>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px">المنصب</td>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px"> الهاتف</td>
+                                <td style="text-align: center; border: 1px solid black;padding: 15px"> التوقيع</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                                <td style="text-align: right; border: 1px solid black;padding: 15px"></td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+
+                </div>
+                <br />
+                <div style="text-align: right;">
+                    <table style="width: 30%;">
+                        <tr>
+                            <td style="width: 10%;">
+                                <input type="checkbox" />
+                            </td>
+                            <td>أو أي شخص تحت الكفالة</td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div style="text-align: right;">
+                    <ul>
+                        <li style="text-decoration: underline;">التسهيلات</li>
+                    </ul>
+                    <p>
+                        قيمة التسهيلات المطلوبة هي
+                        <br />
+                        ريال سعودي فقط لا غير
+                    </p>
+                    <p>
+                        طريقة السداد المطلوبة هي
+                        <br />
+                        يوما من تاريخ إستلام الفاتورة أو الزيادة عن فترة التسهيل أيهما أولا
+                    </p>
+                </div>
+                <div style="text-align: right;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td>
+                                <ul>
+                                    <li style="text-decoration: underline;">ضمانات أخري</li>
+                                </ul>
+                            </td>
+                            <td>
+                                <input type="checkbox" />
+                            </td>
+                            <td>شيكات </td>
+                            <td>
+                                <input type="checkbox" />
+                            </td>
+                            <td>كمبيالات بتاريخ كل دفعة حسب الإتفاق</td>
+                        </tr>
+
+                    </table>
+                </div>
+                <p style="page-break-before:always;"></p>
+                <div style="text-align: right;" dir="rtl">
+                    <ul>
+                        <li style="text-decoration: underline;">تعهد مقدم الطلب</li>
+                    </ul>
+                    <p style="text-align:right;text-align: justify;text-justify: inter-word; line-height: 200%;">
+أتعهد أنا مقدم الطلب بأن البيانات المدرجة بهذا الطلب صحيحة وأنني المخول بتوقيع استمارة الائتمان و أتعهد في حالة قبول طلب الأئتمان من شركة الحلول الملهمة للتجارة والاستيراد بأننا نوافق علي تصفية المبالغ المستحقة فورا حسب السداد المعتمد في التسهيلات الممنوحة وفي حالة تجاوز المدة المحدودة للتسهيلات الممنوحة لنا نتعهد بتسديد الرصيد فورا أو بشيك فوري ونتعهد بسداد المستحقات الخاصة لشركة الحلول الملهمة للتجارة والاستيراد فورا حال توقف النشاط أو التصفية ونخول شركة الحلول الملهمة للتجارة والاستيراد للتأكد من استحقاقاتنا الإئتمانية والتجارية والتوقيع المعتمد لدي البنك الذي نتعامل معه والغرفة التجارية الموضحة في هذا الطلب
+                    </p>
+                </div>
+                <div style="text-align: right; margin-top: 100px;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width: 15%;">اسم مقدم الطلب: </td>
+                            <td>......................................................................</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;">المنصب الاداري: </td>
+                            <td>......................................................................</td>
+                        </tr>
+                        <tr>
+                            <td style="width: 15%;">التوقيع: </td>
+                            <td>......................................................................</td>
+                        </tr>
+                    </table>
+                </div>
+                <div style="text-align: right; margin-top: 30px;">
+                    <table style="width:100%;">
+                        <tr>
+                            <td style="width: 50%;">
+                                <ul>
+                                    <li style="text-decoration: underline;">ختم الشركة</li>
+                                </ul>
+                            </td>
+                            <td style="width: 50%;">
+                                <ul>
+                                    <li style="text-decoration: underline;">تصديق الغرفة التجارية</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+
+            </div>
+        </template>
+        <!--  -->
+
+        <report id="credit_request_action" model="credit.request" string="طباعة طلب تسهيلات ائتمانية" report_type="qweb-pdf" name="op_credit_limit.credit_request_report" file="op_credit_limit.credit_request_report" />
+        <report id="credit_request_action_2" model="credit.request" string="طباعة طلب تسهيلات ائتمانية" report_type="qweb-pdf" name="op_credit_limit.credit_request_report_2" file="op_credit_limit.credit_request_report_2" />
+    </data>
+</odoo>

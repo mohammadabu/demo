@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add Smart Button in Sale View -->
+    <record model="ir.ui.view" id="inherit_sale_form_view">
+        <field name="name">inherit.sale.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]/button[@name='preview_sale_order']" position="before">
+                <button name="total_customer_invoice_amount"
+                        type="object"
+                        class="oe_stat_button order-3"
+                        icon="fa-pencil-square-o">
+                    <field name="customer_invoices_total_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Sale Quotation Tree View -->
+    <record id="inherit_sale_order_quotation_tree_view" model="ir.ui.view">
+        <field name="name">inherit.sale.order.quotation.tree.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree"/>
+        <field name="arch" type="xml">
+            <field name="amount_total" position="before">
+                <field name="customer_invoices_total_amount" string="Total Invoices Amount"
+                       widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Sale Order Tree View -->
+    <record id="inherit_sale_order_tree_view" model="ir.ui.view">
+        <field name="name">inherit.sale.order.tree.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="amount_total" position="before">
+                <field name="customer_invoices_total_amount" string="Total Invoices Amount"
+                       widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            </field>
+        </field>
+    </record>
+
+</odoo>

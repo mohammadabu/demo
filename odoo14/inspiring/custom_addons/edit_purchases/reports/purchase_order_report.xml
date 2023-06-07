@@ -1,0 +1,503 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="inv_report_assets_common" name="inspiringsol report assets common" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+            <link href="https://fonts.googleapis.com" rel="stylesheet" type="text/css" />
+            <link href="https://fonts.gstatic.com" rel="stylesheet" type="text/css" />
+            <link href="https://fonts.googleapis.com/css2?family=Cairo" rel="stylesheet" type="text/css" />
+        </xpath>
+    </template>
+
+    <template id="custom_purchase_order_1_document" inherit_id="purchase.report_purchaseorder_document">
+        <xpath expr="//t/t[2]" position="replace">
+            <t t-set="address">
+                <!-- <div t-field="o.partner_id" style="display:none;"
+                t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                <p style="display:none;">
+                    <t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="o.partner_id.vat"/>
+                </p> -->
+            </t>
+        </xpath>
+        <xpath expr="//t[@t-if='o.dest_address_id']" position="replace">
+            <t t-set="hide_address" t-value="True" />
+            <t t-if="o.dest_address_id">
+                <t t-set="information_block">
+                    <!-- <strong>Shipping address:</strong>
+                    <div class="row" t-if="o.dest_address_id">
+                        <div t-field="o.dest_address_id"
+                            t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}' name="purchase_shipping_address"/>
+                    </div> -->
+                </t>
+            </t>
+            <t t-elif="hide_address">
+                <t t-set="information_block"></t>
+            </t>
+        </xpath>
+
+        <xpath expr="//div[@class='page']" position="replace">
+            <style type="text/css"> 
+                .page {
+                  font-family: 'Cairo', sans-serif !important;
+                }
+                
+                h1,h2,h3,h4,h5,h6,p {
+                  font-family: 'Cairo', sans-serif !important;
+                }
+          </style>
+            <div class="page">
+                <div class="oe_structure" />
+                <h2>
+                    <div class='row'>
+                        <div class='col-6 col-md-6'>
+                            <h3 t-if="o.state == 'draft'" style="font-weight: bold !important;color: black !important;">
+                                Request for Quotation
+                                <!-- <span t-field="o.name"/>  -->
+                            </h3>
+                            <h3 t-if="o.state in ['sent', 'to approve']" style="font-weight: bold !important;color: black !important;">
+                                Purchase Order
+                                <!-- <span t-field="o.name"/>  -->
+                            </h3>
+                            <h3 t-if="o.state in ['purchase', 'done']" style="font-weight: bold !important;color: black !important;">
+                                Purchase Order
+                                <!-- <span t-field="o.name"/>  -->
+                            </h3>
+                            <h3 t-if="o.state == 'cancel'" style="font-weight: bold !important;color: black !important;">
+                                Cancelled Purchase Order
+                                <!-- <span t-field="o.name"/>  -->
+                            </h3>
+                        </div>
+                        <div class='col-6 col-md-6' style="text-align:right !important;">
+                            <h3 t-if="o.state == 'draft'" style="font-weight: bold !important;color: black !important;">
+                                طلب عرض أسعار
+                                <!-- <span t-field="o.name"/>  -->
+                            </h3>
+                            <h3 t-if="o.state in ['sent', 'to approve']" style="font-weight: bold !important;color: black !important;">
+                                أمر شراء
+                                <!-- <span t-field="o.name"/>  -->
+                            </h3>
+                            <h3 t-if="o.state in ['purchase', 'done']" style="font-weight: bold !important;color: black !important;">
+                                أمر شراء
+                                <!-- <span t-field="o.name"/>  -->
+                            </h3>
+                            <h3 t-if="o.state == 'cancel'" style="font-weight: bold !important;color: black !important;">
+                                طلب شراء ملغى
+                                <!-- <span t-field="o.name"/>  -->
+                            </h3>
+                        </div>
+                    </div>
+                </h2>
+                <div id="informations" class="mt32 mb32">
+                    <div class="row">
+                        <div class="col-3 col-md-3" style="text-align: center !important;align-self: center !important;font-size: 14px !important;">
+                            <span t-field="o.date_order" t-options='{"widget": "date"}' />
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <p style="font-size: 12px !important;text-align: center;margin: 0 !important;">
+                                <b>
+                                    <span style="font-size: 13px !important;">Date</span>
+                                    <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>
+                                    <span style="font-size: 12px !important;">التاريخ</span>
+                                </b>
+                            </p>
+                        </div>
+                        <div class="col-3 col-md-3" style="text-align: center !important;align-self: center !important;font-size: 14px !important;">
+                            <span t-field="o.name" />
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <p style="font-size: 12px !important;text-align: center;margin: 0 !important;">
+                                <b>
+                                    <span style="font-size: 13px !important;">Purchase order #</span>
+                                    <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>
+                                    <span style="font-size: 12px !important;">رقم التعميد</span>
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12" style="border-top: 1px solid !important;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 col-md-3" style="text-align: center !important;align-self: center !important;font-size: 14px !important;">
+                            <span t-field="o.payment_term_id.note" />
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <p style="font-size: 12px !important;text-align: center;margin: 0 !important;">
+                                <b>
+                                    <span style="font-size: 13px !important;">Payment Term</span>
+                                    <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>
+                                    <span style="font-size: 12px !important;">مدة الدفع </span>
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-12" style="border-top: 1px solid !important;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3 col-md-3" style="text-align: center !important;align-self: center !important;font-size: 14px !important;">
+                            <span t-field="o.date_planned" />
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <p style="font-size: 12px !important;text-align: center;margin: 0 !important;">
+                                <b>
+                                    <span style="font-size: 13px !important;">Delivery Date</span>
+                                    <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>
+                                    <span style="font-size: 12px !important;">تاريخ التسليم</span>
+                                </b>
+                            </p>
+                        </div>
+                        <div class="col-3 col-md-3" style="text-align: center !important;align-self: center !important;font-size: 14px !important;">
+                            <span t-field="o.partner_ref" />
+                        </div>
+                        <div class="col-3 col-md-3">
+                            <p style="font-size: 12px !important;text-align: center;margin: 0 !important;">
+                                <b>
+                                    <span style="font-size: 13px !important;">Vendor Reference</span>
+                                    <![CDATA[&nbsp;&nbsp;&nbsp;&nbsp;]]>
+                                    <span style="font-size: 12px !important;">مرجع البائع</span>
+                                </b>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row mt-3 w-100">
+                        <table align="right" style="margin:0" class="table table-sm o_main_table col-12 col-md-12" name="invoice_line_table">
+                            <thead>
+                                <tr style="text-align: center ;background: #2B378E;color: white;font-size: 12px;">
+                                    <th style="width: 50% !important;border: 1px solid #000 !important;padding-left: 20px !important;padding-right: 20px !important;">
+                                        <p>
+                                            <span style="margin: 0;/* padding: 4px; */float: right !important;color: white !important">بيانات  العميل </span>
+                                            <span dir="rtl" style="margin: 0;/* padding-: 14px; */float: left !important;color: white !important">Customer Details</span>
+                                        </p>
+                                    </th>
+                                    <th style="width: 50% !important;border: 1px solid #000 !important;padding-left: 20px !important;padding-right: 20px !important;">
+                                        <p>
+                                            <span style="margin: 0;/* padding: 4px; */float: right !important;color: white !important">بيانات  المورد</span>
+                                            <span style="margin: 0;/* padding: 14px; */float: left !important;color: white !important">Supplier Details</span>
+                                        </p>
+                                    </th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="text-align: center;color: #000;font-size: 16px;">
+                                    <td style="border: 1px solid #000;">
+                                        <p t-if="o.company_id.partner_id.name" style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <span t-field="o.company_id.partner_id.name" />
+                                        </p>
+                                        <p t-if="o.company_id.partner_id.name" style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <span t-field="o.company_id.partner_id.title_ar" />
+                                        </p>
+                                        <p style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <span t-field="o.company_id.street" />
+                                        </p>
+                                        <p style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <span t-field="o.company_id.city" />
+                                            <span t-field="o.company_id.zip" />
+                                        </p>
+                                        <p style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <span t-field="o.company_id.country_id" />
+                                        </p>
+                                        <p style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <t t-if="o.company_id.phone">
+                                                <span style="font-weight: bold;">Tel:</span>
+                                                <span t-field="o.company_id.phone" />
+                                            </t>
+                                            <!-- <t t-if="o.company_id.partner_id.fax">
+                                            <span style="font-weight: bold;">Fax:</span>
+                                            <span t-field="o.company_id.partner_id.fax"/>
+                                        </t> -->
+                                        </p>
+                                        <p style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <t t-if="o.company_id.vat">
+                                                <span style="font-weight: bold;">VAT #:</span>
+                                                <span t-field="o.company_id.vat" />
+                                            </t>
+                                        </p>
+                                    </td>
+                                    <td style="border: 1px solid #000;">
+                                        <p t-if="o.partner_id.name" style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <span t-field="o.partner_id.name" />
+                                        </p>
+                                        <p t-if="o.partner_id.title_ar" style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <span t-field="o.partner_id.title_ar" />
+                                        </p>
+                                        <p style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <span t-field="o.partner_id.street" />
+                                            .
+                                        </p>
+                                        <p style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <span t-field="o.partner_id.city" />
+                                            <span t-field="o.partner_id.zip" />
+                                        </p>
+                                        <p style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <span t-field="o.partner_id.country_id" />
+                                            ,
+                                        </p>
+                                        <p style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <t t-if="o.partner_id.phone">
+                                                <span style="font-weight: bold;">Tel:</span>
+                                                <span t-field="o.partner_id.phone" />
+                                            </t>
+                                            <!-- <t t-if="o.partner_id.fax">
+                                            <span style="font-weight: bold;">Fax:</span>
+                                            <span t-field="o.partner_id.fax"/>
+                                        </t> -->
+                                        </p>
+                                        <p style="text-align: left;font-size: 14px;margin: 0;padding-left: 17px;">
+                                            <t t-if="o.partner_id.vat">
+                                                <span style="font-weight: bold;">VAT #:</span>
+                                                <span t-field="o.partner_id.vat" />
+                                            </t>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class='row'>
+                        <table align="right" style="margin:0" class="table table-sm o_main_table col-12 col-md-12" name="invoice_line_table">
+                            <thead>
+                                <tr style="text-align: center;background: #2B378E;color: white;font-size: 12px;">
+                                    <th style="width: 20%;border: 1px solid #000;">
+                                        <p style="margin: 0;padding: 4px;color: white !important">الاجمالي</p>
+                                        <p style="margin: 0;padding: 4px;color: white !important">Total Price</p>
+                                    </th>
+                                    <th style="width: 10%;border: 1px solid #000;">
+                                        <p style="margin: 0;padding: 4px;color: white !important">الكمية</p>
+                                        <p style="margin: 0;padding: 4px;color: white !important">QTY</p>
+                                    </th>
+                                    <th style="width: 20%;border: 1px solid #000;">
+                                        <p style="margin: 0;padding: 4px;color: white !important">سعرالوحدة</p>
+                                        <p style="margin: 0;padding: 4px;color: white !important">Unit Price</p>
+                                    </th>
+                                    <th style="width:  50%;border: 1px solid #000;">
+                                        <p style="margin: 0;padding: 4px;color: white !important">البيان</p>
+                                        <p style="margin: 0;padding: 4px;color: white !important">Description</p>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="current_subtotal" t-value="0" />
+                                <t t-set="tax_name" t-value="" />
+                                <t t-set="tax_amount" t-value="" />
+                                <t t-set="check_one_tax_use" t-value="1" />
+                                <t t-set="tax_val" t-value="-1" />
+                                <t t-set="tax_false" t-value="true" />
+                                <t t-set="tax_name_en" t-value="" />
+                                <t t-set="tax_value" t-value="" />
+                                <t t-foreach="o.order_line" t-as="line">
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded" />
+                                    <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included" />
+                                    <t t-if="len(line.taxes_id) == 1 and (tax_val == line.taxes_id.id or tax_val == -1)">
+                                        <t t-set="tax_name" t-value="line.taxes_id.name" />
+                                        <t t-set="tax_val" t-value="line.taxes_id.id" />
+                                        <t t-set="tax_name_en" t-value="line.taxes_id.name" />
+                                        <t t-set="tax_value" t-value="line.taxes_id.amount" />
+                                        <t t-set="tax_amount" t-value="line.taxes_id.amount" />
+                                    </t>
+                                    <t t-else="">
+                                        <t t-set="check_one_tax_use" t-value="0" />
+                                        <t t-set="tax_false" t-value="false" />
+                                    </t>
+                                    <tr style="text-align: center;color: #000;font-size: 16px;">
+                                        <td style="border: 1px solid #000;font-size: 15px;background: #f5f0f0;">
+                                            <span t-field="line.price_subtotal" />
+                                        </td>
+                                        <td style="border: 1px solid #000;font-size: 15px;background: #f5f0f0;">
+                                            <span t-field="line.product_uom_qty" />
+                                        </td>
+                                        <td style="border: 1px solid #000;font-size: 15px;background: #f5f0f0;">
+                                            <span t-field="line.price_unit" />
+                                        </td>
+                                        <td style="border: 1px solid #000;text-align: left;padding-left: 20px;font-size: 15px;background: #f5f0f0;">
+                                            <span t-field="line.name" />
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr style="text-align: center;color: #000;font-size: 16px;">
+                                    <td style="border: 1px solid #000;padding: 14px;">
+                                        <span t-field="o.amount_untaxed" />
+                                    </td>
+                                    <td colspan="3" style="border: 1px solid #000;text-align: left;">
+                                        <p style="margin: 0;padding: 3px;font-size: 12px;font-weight: bold;">المجموع</p>
+                                        <p style="margin: 0;padding: 3px;font-size: 12px;font-weight: bold;">Total</p>
+                                    </td>
+                                </tr>
+                                <t t-if="tax_false == true ">
+                                    <tr style="text-align: center;color: #000;font-size: 16px;">
+                                        <td style="border: 1px solid #000;padding: 14px;">
+                                            <span t-field="o.amount_tax" />
+                                        </td>
+                                        <td colspan="3" style="border: 1px solid #000;text-align: left;">
+                                            <p style="margin: 0;padding: 3px;font-size: 12px;font-weight: bold;">
+                                                ضريبة القيمة المضافة
+                                            </p>
+                                            <p style="margin: 0;padding: 3px;font-size: 12px;font-weight: bold;">
+                                                <span>VAT </span>
+                                                <span t-esc="tax_value" />
+                                                %
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="text-align: center;color: #000;font-size: 16px;">
+                                        <td style="border: 1px solid #000;padding: 14px;">
+                                            <span t-field="o.amount_tax" />
+                                        </td>
+                                        <td colspan="3" style="border: 1px solid #000;text-align: left;">
+                                            <p style="margin: 0;padding: 3px;font-size: 12px;font-weight: bold;">Taxes</p>
+                                            <p style="margin: 0;padding: 3px;font-size: 12px;font-weight: bold;">Total</p>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr style="text-align: center;color: #000;font-size: 16px;">
+                                    <td style="border: 1px solid #000;padding: 14px;">
+                                        <span t-field="o.amount_total" />
+                                    </td>
+                                    <td colspan="3" style="border: 1px solid #000;text-align: left;">
+                                        <p style="margin: 0;padding: 3px;font-size: 12px;font-weight: bold;">المجموع شاملا الضريبة</p>
+                                        <p style="margin: 0;padding: 3px;font-size: 12px;font-weight: bold;">Total Inc. VAT</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row"></div>
+                    <div>
+                        <h5 style="text-align: center;font-size: 16px;">في حال وجود أي استفسارات أو ملحوظات، يرجى التواصل مع</h5>
+                        <h5 style="text-align: center;font-size: 16px;">
+                            <a t-if="o.user_id.email" style='color: #2B378E;' t-attf-href="mailto:{{o.user_id.email}}">
+                                <span t-field="o.user_id.email"></span>
+                            </a>
+                            ,
+                            <a href="tel:{{o.user_id.phone}}" style="color:black;">
+                                <span t-field="o.user_id.phone" />
+                                <t t-if="o.user_id.title_ar">
+                                    <span t-field="o.user_id.title_ar"></span>
+                                </t>
+                                <t t-else="">
+                                    <span t-field="o.user_id.name"></span>
+                                </t>
+                            </a>
+                        </h5>
+                    </div>
+                    <div class="row">
+                        <div class='col-7 col-md-7' style='font-size: 12px;'>
+                            <p style='margin-bottom: 10px !important;overflow: auto !important;'>This is a system generated Purchase Order and doesn’t require signature nor stamp</p>
+                        </div>
+                        <div class='col-5 col-md-5' style='text-align: right;font-size: 12px;'>
+                            <p style='margin-bottom: 10px !important;'>هذا أمر شراء مصدر آليا من النظام ولا يحتاج لختم أو توقيع</p>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-sm o_main_table" style="display:none;">
+                    <thead>
+                        <tr>
+                            <th name="th_description">
+                                <strong>Description</strong>
+                            </th>
+                            <th name="th_taxes">
+                                <strong>Taxes</strong>
+                            </th>
+                            <th name="th_date_req" class="text-center">
+                                <strong>Date Req.</strong>
+                            </th>
+                            <th name="th_quantity" class="text-right">
+                                <strong>Qty</strong>
+                            </th>
+                            <th name="th_price_unit" class="text-right">
+                                <strong>Unit Price</strong>
+                            </th>
+                            <th name="th_amount" class="text-right">
+                                <strong>Amount</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="current_subtotal" t-value="0" />
+                        <t t-foreach="o.order_line" t-as="line">
+                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_subtotal" groups="account.group_show_line_subtotals_tax_excluded" />
+                            <t t-set="current_subtotal" t-value="current_subtotal + line.price_total" groups="account.group_show_line_subtotals_tax_included" />
+
+                            <tr t-att-class="'bg-200 font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                                <t t-if="not line.display_type">
+                                    <td id="product">
+                                        <span t-field="line.name" />
+                                    </td>
+                                    <td name="td_taxes">
+                                        <span t-esc="', '.join(map(lambda x: x.name, line.taxes_id))" />
+                                    </td>
+                                    <td class="text-center">
+                                        <span t-field="line.date_planned" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.product_qty" />
+                                        <span t-field="line.product_uom.name" groups="uom.group_uom" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.price_unit" />
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                                    </td>
+                                </t>
+                                <t t-if="line.display_type == 'line_section'">
+                                    <td colspan="99" id="section">
+                                        <span t-field="line.name" />
+                                    </td>
+                                    <t t-set="current_section" t-value="line" />
+                                    <t t-set="current_subtotal" t-value="0" />
+                                </t>
+                                <t t-if="line.display_type == 'line_note'">
+                                    <td colspan="99" id="note">
+                                        <span t-field="line.name" />
+                                    </td>
+                                </t>
+                            </tr>
+                            <t t-if="current_section and (line_last or o.order_line[line_index+1].display_type == 'line_section')">
+                                <tr class="is-subtotal text-right">
+                                    <td colspan="99" id="subtotal">
+                                        <strong class="mr16">Subtotal</strong>
+                                        <span t-esc="current_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+
+                <div style="display:none;">
+                    <div class="col-4">
+                        <table class="table table-sm">
+                            <tr class="border-black">
+                                <td name="td_subtotal_label">
+                                    <strong>Subtotal</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td name="td_taxes_label"></td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                                </td>
+                            </tr>
+                            <tr class="border-black o_total">
+                                <td name="td_amount_total_label">
+                                    <strong>Total</strong>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}' />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </xpath>
+    </template>
+</odoo> 

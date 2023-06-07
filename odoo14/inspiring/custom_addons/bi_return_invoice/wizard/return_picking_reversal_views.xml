@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Wizard for choose the credit note date & account journal -->
+    <record id="view_return_picking_reversal" model="ir.ui.view">
+        <field name="name">return.picking.reversal.form</field>
+        <field name="model">return.picking.reversal</field>
+        <field name="arch" type="xml">
+            <form string="Reverse Journal Entry">
+                <group>
+                    <group>
+                        <field name="reason"/>
+                        <field name="date" string="Refund Date"/>
+                    </group>
+                    <group>
+                        <field name="journal_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button string='Reverse' name="reverse_moves" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Wizard action fot credit note -->
+    <record id="action_view_return_picking_reversal" model="ir.actions.act_window">
+        <field name="name">Return Picking Reverse</field>
+        <field name="res_model">return.picking.reversal</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_return_picking_reversal"/>
+        <field name="target">new</field>
+        <field name="binding_model_id" ref="bi_return_invoice.model_stock_return_picking"/>
+        <field name="binding_view_types">list</field>
+    </record>
+</odoo>

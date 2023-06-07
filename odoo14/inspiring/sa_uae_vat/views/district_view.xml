@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_district_form">
+        <field name="name">view.district.form</field>
+        <field name="model">res.district</field>
+        <field name="arch" type="xml">
+            <form>
+                <group>
+                    <field name="name" required="True"></field>
+                    <field name="code" required="True"></field>
+                    <field name="state_id" required="True"></field>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_district_tree">
+        <field name="name">view.district.tree</field>
+        <field name="model">res.district</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"></field>
+                <field name="code"></field>
+                <field name="state_id"></field>
+            </tree>
+        </field>
+    </record>
+    <record id="action_district" model="ir.actions.act_window">
+        <field name="name">District</field>
+        <field name="res_model">res.district</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_district" name="District"
+              parent="contacts.res_partner_menu_config" sequence="5" action="action_district"/>
+
+</odoo>

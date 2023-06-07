@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="partner_personal_account_form" model="ir.ui.view">
+        <field name="name">Partner Personal Accounting</field>
+        <field name="model">partner.account</field>
+        <field name="arch" type="xml">
+            <form string="Partner Account">
+                <header>
+                    <button name="get_details" string="Get Details" type="object" states="draft" class="oe_highlight"/>      
+                    <button name="action_post" string="Post" type="object" states="draft"/>
+                    <button name="action_done" string="Done" type="object" states="posted"/>       
+                    <button name="reverse_move"  string="Reverse Move" type="object" states="done"/>
+                    <button name="%(cancel_parter_account_wizard_action)d" string="Cancel" type="action" states="posted,done" class="oe_highlight"/>
+                    <field name="state" widget="statusbar"/> 
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" readonly="1"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="journal_id"/>
+                    </group>
+                    <br/>
+                    <gropu>
+                        <h4>Select Opening And Closing Date</h4>
+                    </gropu>
+                    <group>
+                        <group>
+                            <field name="start_date"/>
+                        </group>
+                        <group>
+                            <field name="end_date"/>
+                        </group>
+                    </group>
+                     <group col="3">
+                        <field name="opning_balance"/>
+                        <field name="opning_date" readonly="1" attrs="{'invisible': [('opning_balance', '=', False)]}" force_save="1"/>
+                    </group>
+
+                    <notebook>
+                        <page string="Receivable And Payble">
+                           <group>
+                                <h3>Receivable And Payble</h3>
+                            </group>
+                            <group>
+                                <field name="partner_detail_ids" nolabel="1"> 
+                                    <tree string="Partner Receivable And Payble">
+                                       <field name="account_id"/>
+                                       <field name="partner_id"/> 
+                                       <field name="debit"/>
+                                       <field name="credit"/>
+                                       <field name="balance"/>
+                                    </tree>
+                                </field>
+                            </group> 
+                            <group attrs="{'invisible': [('opning_balance', '=', False)]}">
+                                <h3>Opening Balance</h3>
+                            </group>
+                            <group cal="2" attrs="{'invisible': [('opning_balance', '=', False)]}">
+                                <field name="select_all_partner"/>
+                            </group>
+                             <group attrs="{'invisible': [('opning_balance', '=', False)]}">
+                                <field name="partner_detail_payble_ids" nolabel="1">
+                                    <tree string="Partner Payble" editable="bottom" create="0" delete="0">
+                                       <field name="check_partner"/>
+                                       <field name="account_id"/>
+                                       <field name="partner_id"/> 
+                                       <field name="debit" sum="Total Debit"/>
+                                       <field name="credit" sum="Total Credit"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group attrs="{'invisible': [('opning_balance', '=', False)]}">
+                                <h3>Select Adjustment Account</h3>
+                                <field name="inc_account_id" attrs="{'required': [('opning_balance', '=', True)]}"/>
+                                <field name="exp_account_id" attrs="{'required': [('opning_balance', '=', True)]}"/>
+                            </group>
+                        </page>
+                        <page string="Income And Expences">
+                            <group>
+                                <h3>Income And Expences</h3>
+                            </group>
+                            <group>
+                                <field name="partner_detail_in_ex_ids" nolabel="1">
+                                    <tree string="Partner Income And Expences">
+                                       <field name="account_id"/>
+                                       <field name="debit"/>
+                                       <field name="credit"/>
+                                       <field name="balance"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Assets And Liability">
+                            <group>
+                                <h3>Assets And Liability</h3>
+                            </group>
+                            <group>
+                                <field name="partner_detail_ass_li_ids" nolabel="1">
+                                    <tree string="Partner Assets And Liability">
+                                       <field name="account_id"/>
+                                       <field name="debit"/>
+                                       <field name="credit"/>
+                                       <field name="balance"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </page>
+                        <page string="Bank And Cash">
+                            <group>
+                                <h3>Bank And Cash</h3>
+                            </group>
+                            <group>
+                                <field name="partner_detail_bank_cash_ids" nolabel="1">
+                                    <tree string="Partner Assets And Liability">
+                                       <field name="account_id"/>
+                                       <field name="debit"/>
+                                       <field name="credit"/>
+                                       <field name="balance"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <group attrs="{'invisible': [('opning_balance', '=', False)]}">
+                                <h3>Opening Balance</h3>
+                            </group>
+                            <group cal="2" attrs="{'invisible': [('opning_balance', '=', False)]}">
+                                <field name="select_all_account"/>
+                            </group>
+                            <group attrs="{'invisible': [('opning_balance', '=', False)]}">
+                                <field name="partner_opning_bank_cash_ids" nolabel="1">
+                                    <tree string="Partner Payble" editable="bottom" create="0" delete="0" sample="1">
+                                        <field name="check_partner" string="Selcet account" width="15%%"/>
+                                        <field name="account_id"/>
+                                        <field name="debit" sum="Total Debit"/>
+                                        <field name="credit" sum="Total Credit"/>
+                                    </tree>
+                                </field>
+                            </group>
+                            <field name="ad_account" invisible="1"/>
+                            <group attrs="{'invisible': [('ad_account', '=', False)]}">
+                                <!-- <h3>Select Adjustment Account</h3> -->
+                                <field name="ad_account_id" attrs="{'required': [('ad_account', '=', True)]}"/>
+                            </group>
+                                  
+                        </page>
+                        <page string="Account Section" states="posted,done">
+                            <group>
+                                <field name="account_move_ids" nolabel="1"/>
+                            </group> 
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="partner_personal_account_tree">
+        <field name="name">Partner Personal Accounting</field>
+        <field name="model">partner.account</field>
+        <field name="arch" type="xml">
+            <tree string="Partner Account">
+                <field name="name"/>
+                <field name="opning_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="partner_personal_account_action" model="ir.actions.act_window">
+        <field name="name">Opening Account Balance</field>
+        <field name="res_model">partner.account</field>
+        <field name="view_id" ref="partner_personal_account_tree"/>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_root_partner_account" name="Opening Balance" action="partner_personal_account_action" web_icon="account_opening_manual,static/description/icon.png"/>
+
+
+</odoo>

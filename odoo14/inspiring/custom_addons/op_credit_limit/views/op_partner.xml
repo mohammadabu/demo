@@ -1,0 +1,43 @@
+<odoo>
+  <data>
+    <record id="res_partner_inherit_credit_limit" model="ir.ui.view">
+      <field name="name">Set Partner Credit Limit</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form" />
+      <field name="arch" type="xml">
+        <div name='button_box' position="inside">
+          <button name="open_credit_request" string="" type="object" class="oe_stat_button" icon="fa-certificate" >
+          <field name="credit_request_count" widget="statinfo" string="Credit Request" />
+          </button>
+        </div>
+        <xpath expr="//field[@name='vat']" position="after">
+            <field name="cr"  />
+        </xpath>
+
+        <xpath expr="//page[@name='accounting']" position="inside">
+          <group>
+            <!-- <group string="Credit Control" attrs="{'invisible': [('active_limit', '!=', True)]  }"> -->
+              <!-- <field name="set_credit_limit" groups="op_credit_limit.group_manager" /> -->
+              <!-- <field name="credit_limit" attrs="{'invisible': [('active_limit', '!=', True)]  }" groups="op_credit_limit.group_manager" />
+              <field name="hold_credit_limit" attrs="{'invisible': [('active_limit', '!=', True)]  }" groups="op_credit_limit.group_user,op_credit_limit.group_manager" />
+            </group> -->
+            <group string="Current Credit">
+              <field name="cr_balance" />
+              <!-- <field name="debit" />
+            <field name="credit" /> -->
+            </group>
+          </group>
+        </xpath>
+        <xpath expr="//page[@name='accounting']/group/group/field[@name='active_limit']" position="attributes">
+          <attribute name="groups">op_credit_limit.group_credit_set_credit_limit</attribute>
+        </xpath>
+        <xpath expr="//page[@name='accounting']/group/group/field[@name='warning_stage']" position="attributes">
+          <attribute name="groups">op_credit_limit.group_credit_set_credit_limit</attribute>
+        </xpath>
+        <xpath expr="//page[@name='accounting']/group/group/field[@name='blocking_stage']" position="attributes">
+          <attribute name="groups">op_credit_limit.group_credit_set_credit_limit</attribute>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

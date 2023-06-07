@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-name="RefreshMenu" owl="1">
+	<li role="menuitem" class="o_menu_item">
+        <a aria-checked="false" role="menuitemcheckbox" href="#" class="dropdown-item" t-on-click.prevent="_onRefreshMenuClick()">Refresh</a>
+     </li>
+</t>
+    
+</templates>

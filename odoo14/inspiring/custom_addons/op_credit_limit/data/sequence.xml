@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="sequence_credit_request" model="ir.sequence">
+            <field name="name">Credit Request</field>
+            <field name="code">credit.request</field>
+            <field name="prefix">CRDT/</field>
+            <field name="padding">5</field>
+            <field name="implementation">standard</field>
+            <field name="company_id" eval="False" />
+        </record>
+    </data>
+</odoo>

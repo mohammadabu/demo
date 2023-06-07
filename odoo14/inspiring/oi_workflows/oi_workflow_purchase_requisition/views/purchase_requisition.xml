@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="purchase_requisition_form" model="ir.ui.view">
+		<field name="name">purchase.requisition.form</field>
+		<field name="model">purchase.requisition</field>
+		<field name="inherit_id" ref="purchase_requisition.view_purchase_requisition_form" />
+		<field name="priority">100</field>
+		<field name="arch" type="xml">
+			<button name="action_in_progress" position="replace" />
+			<button name="action_open" position="after">
+				<field name="workflow_states" invisible="1" />
+				<field name="user_can_approve" invisible="1" />
+				<field name="button_approve_enabled" invisible="1" />
+				<field name="button_forward_enabled" invisible="1" />
+				<field name="button_return_enabled" invisible="1" />
+				<field name="button_cancel_enabled" invisible="1"/>														
+				<field name="approve_button_name" invisible="1" />
+				<field name="approve_confirm_msg" invisible="1" />
+				<field name="reject_button_wizard" invisible="1" />
+				<field name="reject_button_name" invisible="1" />
+				<field name="reject_confirm_msg" invisible="1" />
+				<button name="action_approve" type="object" string="Confirm" class="oe_highlight" states="draft" />
+				<button name="action_approve" type="object" string="Approve" class="oe_highlight oe_workflow_approve" attrs="{'invisible' : [('user_can_approve','=', False)]}" />
+				<button name="action_reject_wizard" type="object" string="Reject" class="oe_workflow_reject" attrs="{'invisible' : ['|', '|', ('user_can_approve','=', False), ('reject_button_name', '=', False), ('reject_button_wizard', '=', False)]}" />
+				<button name="action_reject" type="object" string="Reject" class="oe_workflow_reject" attrs="{'invisible' : ['|','|', ('user_can_approve','=', False), ('reject_button_name', '=', False), ('reject_button_wizard', '=', True)]}" />
+				<button name="action_forward" type="object" string="Forward" attrs="{'invisible' : [('button_forward_enabled','=', False)]}" />
+				<button name="action_return" type="object" string="Return" attrs="{'invisible' : [('button_return_enabled','=', False)]}" />
+				<button name="action_cancel" type="object" string="Cancel" attrs="{'invisible' : [('button_cancel_enabled','=', False)]}"/>														
+			</button>			
+			<button name="action_draft" position="attributes">
+				<attribute name="states">cancel,rejected</attribute>
+				<attribute name="confirm">Reset to draft ?</attribute>
+			</button>
+			<xpath expr="//field[@name='line_ids']/tree" position="inside">
+				<field name="state" invisible="1" />
+			</xpath>
+			<xpath expr="//field[@name='line_ids']/form/group" position="inside">
+				<field name="state" invisible="1" />
+			</xpath>
+			<div class="oe_button_box" name="button_box" position="inside">
+				<button name="open_canceled_record" type="object"
+					class="oe_stat_button" icon="fa-bars"
+					attrs="{'invisible': [('canceled_record_count', '=', 0)]}">
+					<field name="canceled_record_count" />
+					<div class="o_field_widget o_stat_info">
+						<span class="o_stat_text">
+							Cancellation Records
+						</span>
+					</div>
+				</button>
+			</div>			
+		</field>
+	</record>
+	
+</odoo>

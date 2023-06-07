@@ -1,0 +1,647 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="external_layout_saudi_branch">
+    <t t-if="o and 'company_id' in o">
+      <t t-set="company" t-value="o.company_id" />
+    </t>
+
+    <t t-if="not o or not 'company_id' in o">
+      <t t-set="company" t-value="res_company" />
+    </t>
+
+    <t t-set="sales_order_name" t-value="" />
+    <t t-set="po_number_new" t-value="" />
+    <t t-set="deliveiry_address_new" t-value="" />
+    <t t-foreach="doc.invoice_line_ids" t-as="line_test">
+      <t t-foreach="line_test.sale_line_ids" t-as="line_1_test">
+        <t t-set="sales_order_name" t-value="line_1_test.order_id.name" />
+        <t t-set="po_number_new" t-value="line_1_test.order_id.po_number" />
+        <t t-set="deliveiry_address_new" t-value="line_1_test.order_id.deliveiry_address.name" />
+      </t>
+    </t>
+
+    <style>
+            *,html,body,h1,h2,h3,h4,h5,h6,div,span,table,td,th,tr{
+                  font-weight: bold !imporatnt;
+                  font-family: sans-serif !imporatnt;
+            }
+            .prod {
+              width: 100% !important;
+              margin:0px !important;
+              padding:0px !imporatnt;
+              border: 0;
+              border-collapse: collapse;
+              direction: rtl;
+            }
+            .prod thead {
+              background: #263a7d;
+              margin:0px !important;
+              padding:0px !imporatnt;
+            }
+            .prod thead th span {
+              display: block;
+            }
+            .prod thead th {
+              border: 0;
+              font-size: 14px;
+              text-align: center;
+              color: #fff;
+              font-weight: 400;
+              padding: 0.3rem;
+              vertical-align: middle;
+              margin:0px !important;
+            }
+            .prod tbody tr td {
+              background: #f5f5f5;
+              border: 1px solid #263a7d;
+              margin:0px !important;
+              text-align: center;
+            }
+            #top{
+              width: 100%;
+              margin:0px !imporatnt;
+              overflow: hidden;
+            }
+            #title{
+              width:57%;
+              float:left;
+              text-align:right;
+              color:#2E2E86;
+            }
+            #qcode{
+              width:43%;
+              float:left;
+              text-align:right;
+            }
+            #info{
+              width: 100%;
+              margin:0px
+            }
+            #Dinfo1{
+              width:23%;
+              float:right;
+              text-align:right;
+              margin-top: 5px;
+              margin-bottom: 5px;
+            }
+            #Dinfo2{
+              width:31%;
+              float:right;
+              text-align:right;
+              margin-top: 5px;
+              margin-bottom: 5px;
+            }
+            #Dinfo3{
+              width:23%;
+              float:right;
+              text-align:right;
+              margin-top: 5px;
+              margin-bottom: 5px;
+            }
+            #Dinfo4{
+              width:23%;
+              float:right;
+              text-align:right;
+              margin-top: 5px;
+              margin-bottom: 5px;
+            }
+            #lable{
+              width: 40%;
+              color: #000;
+              text-align: center;
+              font-size: 14px;
+              font-weight: 500;
+              float:right;
+              line-height: 15px;
+            }
+            #data{
+              border-radius: 3rem;
+              background: #b3b3b7;
+              width: 60%;
+              float:right;
+              line-height: 30px;
+              text-align: center;
+            }
+            #invoice-client-vendor-details{
+              width:100%
+              display:inline-block;
+              margin:0px
+            }
+            .details{
+              width:46%;
+              float:right;
+            }
+            .vendor-client-main-title {
+              background: #263a7d;
+              width: 100%;
+              color: #fff;
+              font-weight: 100;
+              text-align: right;
+              padding: 5px;
+              font-size:12px !imporatnt;
+              margin-bottom:0px !imporatnt;
+              padding-bottom:0px !imporatnt;
+            }
+            .vendor-client-main-title span {
+              float: left;
+              font-weight: 500;
+              font-size:12px !imporatnt;
+            }
+            .form-group {
+              margin-bottom: 5px;
+            }
+            .client-vendor-details label {
+              text-align: right;
+              display: block;
+              font-weight: 500;
+              padding: 3px;
+            }
+            .client-vendor-details label span {
+              float: left;
+            }
+            .client-vendor-details .textarea {
+              background: #b3b3b7;
+              border-radius: 2rem;
+              border: 1px solid #b3b3b7;
+              text-align:center;
+              line-height: 15px;
+              padding:5px;
+            }
+            .invoice-last-part{
+              width:100%;
+              margin:auto;
+              height:200px;
+            }
+            .details2{
+              width:45%;
+              float:right;
+            }
+            .receiver-name-info-wrapper {
+              width: 100%;
+              padding-right: 1rem;
+              padding-top: 20px;
+            }
+            .receiver-info-wrapper {
+              display: flex;
+              align-items: end;
+              margin-bottom: 0;
+              width:100%;
+              overflow: hidden;
+            }
+            .receiver-info-wrapper label {
+              text-align: right;
+              display: inline-block;
+              width: 25%;
+              margin-bottom: 0;
+              padding-bottom: 0;
+              color: #000;
+              font-size: 14px;
+              font-weight: 400;
+              float:right;
+            }
+            .receiver-info-wrapper input {
+              width: 70%;
+              display: inline-block;
+              margin-right: 1rem;
+              border: 0;
+              border-bottom-color: currentcolor;
+              border-bottom-style: none;
+              border-bottom-width: 0px;
+              border-bottom: 2px dotted #000;
+              border-radius: 0;
+              float:right;
+            }
+            .notes-section {
+              text-align: right;
+              overflow: hidden;
+            }
+            .notes-section h6 {
+              font-weight: 700;
+              font-size: 15px;
+            }
+            .notes-content {
+            }
+            .notes-content p {
+              margin-bottom: 0;
+              font-size: 14px;
+            }
+            p.notes-final-note {
+              font-size: 14px;
+            }
+            .total-wrapper {
+              margin-top: 1rem;
+              width: 60%;
+              margin: 1rem auto 3rem 0;
+            }
+            .total-info-wrapper {
+              display: flex;
+              align-items: center;
+              margin-bottom: .5rem;
+              width: 100%;
+              overflow: hidden;
+            }
+            .total-info-wrapper label {
+              width: 45%;
+              text-align: center;
+              background: #263a7d;
+              color: #fff;
+              font-size: 14px;
+              float:right;
+              padding: 5px;
+            }
+            .total-info-wrapper .input {
+              width: 45%;
+              background: #b3b3b7;
+              border: 1px solid #b3b3b7;
+              border-radius: 2rem;
+              float:right;
+              padding: 5px;
+              text-align: center;
+            }
+            .total-terms-wrapper h6 {
+              text-align: right;
+              width: 85%;
+              margin: 1.2rem auto 0.5rem 0;
+              font-weight: 700;
+              font-size: 15px;
+            }
+            .total-terms-wrapper p {
+              width: 85%;
+              margin: 0.5rem auto 0.5rem 0;
+              text-align: right;
+              font-size: 20px;
+            }
+            .total-info-wrapper label span {
+              display: block;
+            }
+            .header{
+               width:100% !imporatnt;
+            }
+          </style>
+    <div t-attf-class="header o_standard_header o_company_#{company.id}_layout">
+      <div id="address" style="width:70%;float:left;color:#2E2E86;font-weight: bold;text-align:lefttext-align: left;font-size:12px;font-family: sans-serif !imporatnt;">
+        SAUDI ARABIA, RIYADH,
+        <br />
+        YAZEED SQUARE,
+        <br />
+        3410 MAKKAH AL MUKARRAMAH BRANCH ROAD
+        <br />
+        AL OLAYA, RIYADH 12221
+        <br />
+        P.O.BOX 888859
+        <br />
+        POSTAL CODE 11672
+        <br />
+        TEL : 920029818
+      </div>
+      <div id="logo" style="width:30% !important;float:left !important;">
+        <img t-att-src="image_data_uri(company.large_logo)" style="margin: auto; display: block; width:100%;" alt="Logo" />
+      </div>
+    </div>
+    <div t-attf-class="main o_report_layout_standard o_company_#{company.id}_layout">
+      <div id="top">
+        <div id="title">
+          <h2 style="margin-right: 15px;font-family: sans-serif !imporatnt;">فاتورة ضريبية</h2>
+          <h2 style="font-family: sans-serif !important;">VAT Invoice</h2>
+        </div>
+        <div id="qcode">
+          <img t-attf-src="data:image/*;base64,{{doc.qr_code}}" style="width:100px; height:100px;" />
+        </div>
+      </div>
+      <div id="info" style="font-family: sans-serif !important;">
+        <div id="Dinfo1">
+          <div id="lable">
+            التاريخ
+            <br />
+            Date
+          </div>
+          <div id="data">
+            <t t-esc="doc.invoice_date"></t>
+          </div>
+        </div>
+        <div id="Dinfo2">
+          <div id="lable">
+            رقم الفاتورة
+            <br />
+            Invoice Number
+          </div>
+          <div id="data">
+            <t t-esc="doc.name"></t>
+          </div>
+        </div>
+        <!-- <div id="Dinfo3">
+          <div id="lable">
+            تاريخ التسليم
+            <br />
+            Delivery Date
+          </div>
+          <div id="data">
+            <t t-esc="doc.l10n_sa_delivery_date"></t>
+          </div>
+        </div> -->
+        <div id="Dinfo4">
+          <div id="lable">
+            تاريخ الدفع
+            <br />
+            Due Date
+          </div>
+          <div id="data">
+            <t t-esc="doc.invoice_payment_term_id.name"></t>
+          </div>
+        </div>
+      </div>
+      <div class="invoice-client-vendor-details">
+        <div class="details" style="margin-right:10px;">
+          <div class="form-vendor-side client-vendor-details">
+            <h4 class="vendor-client-main-title" style="font-family: sans-serif !important;">
+              المورد
+              <span>Vendor</span>
+            </h4>
+            <div class="form-group">
+              <label for="vendor_name" style="font-family: sans-serif !important;">
+                اسم المورد
+                <span>Vendor Name</span>
+              </label>
+              <div class="form-control textarea" id="vendor_name" style="font-family: sans-serif !important;">
+                <t t-esc="doc.company_id.name_arabic"></t>
+                <t t-esc="doc.company_id.name"></t>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="vendor_address" style="font-family: sans-serif !important;">
+                عنوان المورد
+                <span>Vendor Address</span>
+              </label>
+              <div class="form-control textarea" id="vendor_address" style="height: 45px !important;font-family: sans-serif !important;">
+                <t t-esc="doc.company_id.building_number"></t>
+                <t t-esc="doc.company_id.street"></t>
+                <t t-esc="doc.company_id.district_id.name"></t>
+                <t t-esc="doc.company_id.city"></t>
+                <t t-esc="doc.company_id.country_id.name"></t>
+                <t t-esc="doc.company_id.zip"></t>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="font-family: sans-serif !important;" for="vendor-vat-no">
+                الرقم الضريبي
+                <span style="font-family: sans-serif !important;width:300px !important; text-align: left !important; ">Vendor VAT No.</span>
+              </label>
+              <div class="form-control textarea" id="vendor-vat-no" style="height: 15px !important;font-family: sans-serif !important;">
+                <t t-esc="doc.company_id.vat"></t>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="sales-order-no" style="font-family: sans-serif !important;">
+                أمر الشراء
+                <span>Sales Order No.</span>
+              </label>
+              <div class="form-control textarea" id="ales-order-no" style="height: 15px !important;font-family: sans-serif !important;">
+                <t t-esc="sales_order_name"></t>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="details" style="margin-right:50px;">
+          <div class="form-client-side client-vendor-details">
+            <h4 class="vendor-client-main-title">
+              العميل
+              <span>Client</span>
+            </h4>
+            <div class="form-group">
+              <label for="vendor_name" style="font-family: sans-serif !important;">
+                اسم العميل
+                <span>Client Name</span>
+              </label>
+              <div class="form-control textarea" id="vendor_name" style="font-family: sans-serif !important;">
+                <!-- <t t-esc="doc.partner_id.name_arabic"></t> <br/> -->
+                  <!-- <t t-esc="doc.partner_id.name_arabic"></t> <br/> -->
+                <t t-if="doc.partner_id.parent_id.name">
+                  <t t-esc="doc.partner_id.parent_id.name"></t>,
+                </t>
+                  <t t-esc="doc.partner_id.name"></t>
+
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="vendor_address" style="font-family: sans-serif !important;">
+                عنوان العميل
+                <span>Client Address</span>
+              </label>
+              <!-- <div class="form-control textarea" id="vendor_address"  style="height: 45px !important;font-family: sans-serif !important;">
+                            <t t-esc="doc.partner_id.name"></t>,
+                            <t t-esc="deliveiry_address_new"></t> 
+                          </div> -->
+              <div class="form-control textarea" id="vendor_address" style="height: 45px !important;font-family: sans-serif !important;">
+                  <t t-esc="doc.partner_id.building_number"></t>
+                  <t t-esc="doc.partner_id.street"></t>
+                  <t t-esc="doc.partner_id.district_id.name"></t>
+                  <t t-esc="doc.partner_id.city"></t>
+                  <t t-esc="doc.partner_id.country_id.name"></t>
+                  <t t-esc="doc.partner_id.zip"></t>
+              </div>
+            </div>
+            <div class="form-group">
+              <label style="font-family: sans-serif !important;" for=" vendor-vat-no">
+                الرقم الضريبي
+                <span style="font-family: sans-serif !important;width:300px !important; text-align: left !important; ">Client VAT No.</span>
+              </label>
+              <div class="form-control textarea" id="vendor-vat-no" style="height: 15px !important;font-family: sans-serif !important;">
+                <t t-esc="doc.partner_id.vat"></t>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="sales-order-no" style="font-family: sans-serif !important;">
+                رقم التعميد
+                <span>PO Number</span>
+              </label>
+              <div class="form-control textarea" id="ales-order-no" style="height: 15px !important;font-family: sans-serif !important;">
+                <t t-esc="po_number_new"></t>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <table class="prod" style="width:900px !important ;margin-top:20px;font-family: sans-serif !important;">
+        <thead style="display: table-row-group;color#000 !important;">
+          <th>
+            الصنف
+            <br />
+            Item no
+          </th>
+          <th>
+            البيان
+            <br />
+            Description
+          </th>
+          <th>
+            الكمية
+            <br />
+            Quantity
+          </th>
+          <th>
+            سعر الوحدة
+            <br />
+            Unit price
+          </th>
+          <th>
+            الاجمالي غير شامل ضريبة القيمة المضافة
+            <br />
+            Price excl. VAT
+          </th>
+          <th>
+            نسبة الضريبة
+            <br />
+            % VAT
+          </th>
+          <th>
+            ضريبة القيمة المضافة
+            <br />
+            VAT
+          </th>
+          <th>
+            الإجمالي الشامل
+            <br />
+            Total with VAT
+          </th>
+        </thead>
+        <tbody class="sale_tbody">
+          <tr t-foreach="doc.invoice_line_ids" t-as="line">
+            <t t-set="tax_total" t-value="0" />
+            <t t-foreach="line.tax_ids" t-as="t">
+              <t t-set="tax_total" t-value="tax_total+t.amount" />
+            </t>
+            <td>
+              <span t-esc="line.product_id.default_code" />
+            </td>
+            <td>
+              <span t-esc="line.product_id.name_arabic" options="{'widget': 'text'}" />
+              <br />
+              <span t-esc="line.product_id.name" t-options="{'widget': 'text'}" />
+            </td>
+            <td>
+              <span t-esc="line.quantity" />
+            </td>
+            <td>
+              <span t-esc="line.price_unit" />
+            </td>
+            <td>
+              <t t-set="total" t-value="(line.price_unit-(line.price_unit*line.discount/100))*(line.quantity)"></t>
+              <span t-esc="'%.2f'%(total)" />
+            </td>
+            <td>
+              <t t-foreach="line.tax_ids" t-as="t">
+                <span t-esc="'%.2f'%(t.amount)" />
+              </t>
+              <span t-if="not line.tax_ids">0.0</span>
+            </td>
+            <td>
+              <t t-set="tax_total" t-value="line.price_subtotal*tax_total/100" />
+              <sapn t-esc="'%.2f'%(tax_total)" />
+            </td>
+            <td>
+              <t t-set="amt_total" t-value="tax_total+total" />
+              <span t-esc="'%.2f'%(amt_total)" />
+              SR
+            </td>
+
+
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="width:100%;overflow:hidden;margin-top:10px;">
+        <div class="receiver-name-info-wrapper" style="width:45%;float:right;">
+          <div class="form-group receiver-info-wrapper" style="margin-bottom: 1rem;display: flex;align-items: end;margin-bottom: 0;width:100%;">
+            <label for="receiver_name" style="text-align: right;display: inline-block;width: 25%;margin-bottom: 0;padding-bottom: 0;color: #000;font-size: 14px;font-weight: 400;float:right;">اسم المستلم</label>
+            <input type="text" class="form-control" id="receiver_name" style="width:65%;display: inline-block;margin-right: 1rem;border: 0;border-bottom-color: currentcolor;border-bottom-style: none;border-bottom-width: 0px;border-bottom: 2px dotted #000;border-radius: 0;float:right;" />
+          </div>
+          <div class="form-group receiver-info-wrapper" style="margin-bottom: 1rem;display: flex;align-items: end;margin-bottom: 0;width:100%;">
+            <label for="bill_date" style="text-align: right;display: inline-block;width: 25%;margin-bottom: 0;padding-bottom: 0;color: #000;font-size: 14px;font-weight: 400;float:right;">التاريخ</label>
+            <input type="text" class="form-control" id="bill_date" style="width:65%;display: inline-block;margin-right: 1rem;border: 0;border-bottom-color: currentcolor;border-bottom-style: none;border-bottom-width: 0px;border-bottom: 2px dotted #000;border-radius: 0;float:right;" />
+          </div>
+          <div class="form-group receiver-info-wrapper" style="margin-bottom: 1rem;display: flex;align-items: end;margin-bottom: 0;width:100%;">
+            <label for="signature" style="text-align: right;display: inline-block;width: 25%;margin-bottom: 0;padding-bottom: 0;color: #000;font-size: 14px;font-weight: 400;float:right;">التوقيع</label>
+            <input type="text" class="form-control" id="signature" style="width:65%;display: inline-block;margin-right: 1rem;border: 0;border-bottom-color: currentcolor;border-bottom-style: none;border-bottom-width: 0px;border-bottom: 2px dotted #000;border-radius: 0;float:right;" />
+          </div>
+        </div>
+        <div class="total-wrapper" style="width:50%;float:right;">
+          <div class="form-group total-info-wrapper" style="display: flex;align-items: center;margin-bottom: .5rem;width: 100%;overflow: hidden;">
+            <label for="total" style="width: 60%;text-align: center;background: #263a7d;color: #fff;font-size: 14px;
+                      float:right;padding: 5px;font-family: sans-serif !important;">
+              المجموع
+              <br />
+              <span>Total</span>
+            </label>
+            <div class="form-control input" id="total" style="width: 30%;background: #b3b3b7;border: 1px solid #b3b3b7;border-radius: 2rem;float:right;padding: 5px;text-align: center;font-family: sans-serif !important;">
+              <t t-esc="doc.amount_untaxed"></t>
+              SR
+            </div>
+          </div>
+
+          <div class="form-group total-info-wrapper" style="display: flex;align-items: center;margin-bottom: .5rem;width: 100%;overflow: hidden;font-family: sans-serif !important;">
+            <label for="total_vat" style="width: 60%;text-align: center;background: #263a7d;color: #fff;font-size: 14px;
+                    float:right;padding: 5px;font-family: sans-serif !important;">
+              ضريبة القيمة المضافة
+              <br />
+              <span>VAT</span>
+            </label>
+            <div class="form-control input" id="total_vat" style="width: 30%;background: #b3b3b7;border: 1px solid #b3b3b7;border-radius: 2rem;float:right;padding: 5px;text-align: center;font-family: sans-serif !important;">
+              <t t-esc="doc.amount_tax"></t>
+              SR
+            </div>
+          </div>
+
+
+          <div class="form-group total-info-wrapper" style="display: flex;align-items: center;margin-bottom: .5rem;width: 100%;overflow: hidden;font-family: sans-serif !important;">
+            <label for="total_with_vat" style="width: 60%;text-align: center;background: #263a7d;color: #fff;font-size: 14px;
+                      float:right;padding: 5px;font-family: sans-serif !important;">
+              المجموع شاملا الضريبة
+              <br />
+              <span>Total with Vat</span>
+            </label>
+            <div class="form-control input" id="total_with_vat" style="width: 30%;background: #b3b3b7;border: 1px solid #b3b3b7;border-radius: 2rem;float:right;padding: 5px;text-align: center;font-family: sans-serif !important;">
+              <t t-esc="doc.amount_residual"></t>
+              SR
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div t-attf-class="footer o_standard_footer o_company_#{company.id}_layout" style="font-family: sans-serif !important;">
+      <div id="invoice-last-part" class="invoice-last-part" style="width:100%;margin:auto;height:200px;font-family: sans-serif !important;">
+        <div class="details2" style="width:45%;float:right;font-family: sans-serif !important;">
+          <div class="notes-section" style="text-align: right;overflow: hidden; margin-top:30px;font-family: sans-serif !important;">
+            <h6 style="font-weight: 700;font-size: 15px;font-family: sans-serif !important;">الملاحظات</h6>
+            <div class="notes-content">
+              <p style="margin-bottom: 0;font-size: 14px;font-family: sans-serif !important;">معلومات حساب البنكي</p>
+              <p style="margin-bottom: 0;font-size: 14px;font-family: sans-serif !important;">
+                Account Name: ALHOLOL ALMULHEMAH TRADING CO
+                <br />
+                THE SAUDI INVESTMENT BANK
+                <br />
+                IBAN: SA69 6500 0000 1017 3545 4001
+                <br />
+                SWIFIT: SIBCSARI
+              </p>
+            </div>
+            <p class="notes-final-note" style="font-size: 14px;font-family: sans-serif !important;font-family: sans-serif !important;">الشيكات تسجل بإسم: شركة الحلول الملهمة للتجارة والإستراد</p>
+          </div>
+        </div>
+        <div class="details2" style="width:45%;float:right;font-family: sans-serif !important;">
+          <div class="total-terms-wrapper">
+            <h6 style="text-align: right;width: 85%;
+                      margin: 1.2rem auto 0.5rem 0;font-weight: 700;font-size: 15px;margin-top:50px !imporatnt;font-family: sans-serif !important;">الشروط والأحكام</h6>
+            <p style="width: 85%;margin: 0.5rem auto 0.5rem 0;text-align: right;font-size: 20px;font-family: sans-serif !important;">يتم الدفع خلال 30 يوم من تاريخ استلام الفاتورة</p>
+          </div>
+        </div>
+        <div style="width: 100%;text-align: center; font-size:12px;over overflow: hidden;clear: both;font-family: sans-serif !important;">
+          Page
+          <span class="page" />
+          of
+          <span class="topage" />
+        </div>
+      </div>
+    </div>
+  </template>
+</odoo>

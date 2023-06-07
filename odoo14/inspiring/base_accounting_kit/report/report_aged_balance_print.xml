@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_aged_balance_print">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <div style="padding-bottom:50px !important;" class="oe_structure"/>
+                        <h1 style="text-align:center;">Aged Partner Balance</h1>
+                        <!-- <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th style="width:25%;">Project Number</th>
+                                    <th style="width:25%;">Project Name</th>
+                                    <th style="width:25%;">Project Stage</th>
+                                    <th style="width:25%;">Associated Opportunity Value</th>
+                                    <th style="width:25%;">Customer</th>
+                                </tr>
+                                <tr t-foreach="project_info" t-as="t">
+                                    <td><span t-esc="t['name_seq']"/></td>
+                                    <td><span t-esc="t['name']"/></td>
+                                    <td><span t-esc="t['stage']"/></td>
+                                    <td><span t-esc="t['value_opportunity']"/></td>
+                                    <td><span t-esc="t['customer_name']"/></td> 
+                                </tr>
+                            </tbody>
+                        </table> -->
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record model="ir.ui.menu" id="purchase_requisition.menu_purchase_requisition_pro_mgt">
+            <field name="name">Purchase Agreements</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,151 @@
+<odoo>
+    <template id="custom_layout_footer_header" inherit_id="web.external_layout_background">
+        <xpath expr="//div[@t-attf-class='o_company_#{company.id}_layout header']" position="replace">
+            <div t-attf-class="o_company_#{company.id}_layout header" t-att-style="report_header_style">
+                <style>
+                    .o_background_header {
+                    border:0;
+                    /*border-top: 2px solid #263a7d;*/
+                    padding: 15px 5px 0px 20px;
+                    margin: 10px 10px 0px -10px;
+                    position: relative;
+                    z-index: 0;
+                    }
+                    .header-right-border {
+                    width: 2px;
+                    height: 162px;
+                    position: absolute;
+                    right: 0px;
+                    top: 0px;
+                    background-color: #263a7d;
+                    }
+                    .header-left-border {
+                    width: 2px;
+                    height: 162px;
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    background-color: #263a7d;
+                    }
+                    .o_background_header .company_address span {
+                    color: #2b378e;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    font-size: 0.8em;
+                    }
+                    .o_background_header .company_address {
+                    padding: 0;
+                    margin: 0;
+                    line-height: 15px;
+                    width: 45%;
+                    word-break: break-word;
+                    }
+                    .o_background_header .company-address-label {
+                    padding-right: 20px;
+                    }
+                    .o_background_header .company-logo {
+                    max-width: 270px;
+                    max-height: 270px;
+                    }
+                </style>
+                <div class="o_background_header">
+                    <!--<div class="header-right-border"></div>
+                    <div class="header-left-border"></div>-->
+                    <div class="float-right">
+                        <h3 class="mt0 text-right" t-field="company.report_header"/>
+                    </div>
+                    <img t-if="company.large_logo" t-att-src="image_data_uri(company.large_logo)" class="float-right company-logo" alt="Logo"/>
+                    <div class="float-left company_address">
+                        <span t-field="company.country_id" />, <span t-field="company.city" />
+                        <br/><t t-if="company.building_number"><span t-field="company.building_number" />, </t><span t-field="company.street" />
+                        <t t-if="company.street2">
+                            <br/><span t-field="company.street2" />
+                        </t>
+                        <br/><span t-field="company.district_id" />
+                        <br/><span class="company-address-label">P.O. Box</span> <span t-field="company.po_box" />
+                        <br/><span class="company-address-label">Postal Code</span> <span t-field="company.zip" />
+                        <br/><span class="company-address-label">TEL</span>: <span t-field="company.phone" />
+                    </div>
+                    <!--<div class="clearfix mb8"/>-->
+                </div>
+            </div>
+        </xpath>
+        <xpath expr="//div[@t-attf-class='o_company_#{company.id}_layout article o_report_layout_background']" position="replace">
+            <div t-attf-class="o_company_#{company.id}_layout article o_report_layout_background" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')"
+                 style="background-image: none;padding: 0px 30px 30px 30px;margin: 0px -15px 15px -10.8px; position: relative; min-height: 997px !important;">
+                <style>
+                    .body-right-border {
+                    width: 2px;
+                    height: 100%;
+                    position: absolute;
+                    right: 0px;
+                    top: 0px;
+                    background-color: #263a7d;
+                    z-index: 5;
+                    }
+                    .body-left-border {
+                    width: 2px;
+                    height: 100%;
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    background-color: #263a7d;
+                    z-index: 5;
+                    }
+                </style>
+                <!--<div class="body-right-border"></div>
+                <div class="body-left-border"></div>-->
+                <t t-call="web.address_layout"/>
+                <t t-raw="0"/>
+            </div>
+        </xpath>
+        <xpath expr="//div[@t-attf-class='o_company_#{company.id}_layout footer o_background_footer']" position="replace">
+            <div t-attf-class="o_company_#{company.id}_layout footer o_background_footer"
+                 style="padding: 0px 30px 0px 0px;margin: 0px -15px 0px -10px; position: relative;">
+                <style>
+                    .footer-left-border {
+                    width: 2px;
+                    height: 110px;
+                    position: absolute;
+                    left: 0px;
+                    top: 0px;
+                    background-color: #263a7d;
+                    }
+                    .footer-content {
+                    /*width:59%;*/
+                    width: 100%;
+                    display: inline-block;
+                    font-size: 0.6em;
+                    letter-spacing: 5px;
+                    color: #737273;
+                    /*text-align: left;*/
+                    text-align: center;
+                    margin-top: 100px;
+                    }
+                    .footer-bottom-border {
+                    width: 40%;
+                    display: inline-block;
+                    height: 2px;
+                    background-color: #263a7d;
+                    margin-top: 100px;
+                    }
+                    .report-pagination {
+                    float: right;
+                    }
+                </style>
+                <!--<div class="footer-left-border"></div>
+                <div class="footer-bottom-border"></div>-->
+                <div class="footer-content">
+                    ALHOLOOL ALMULHEMAH CO
+                    <div t-if="report_type == 'pdf'" class="text-muted report-pagination">
+                        Page:
+                        <span class="page"/>
+                        of
+                        <span class="topage"/>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

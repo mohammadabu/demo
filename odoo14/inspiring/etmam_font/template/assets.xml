@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<template id="assets_backend" name="Etmam Font" inherit_id="web.assets_backend">
+		<xpath expr="." >
+            <link rel="stylesheet" type="text/scss" href="/etmam_font/static/src/scss/font.scss"/>
+		</xpath>
+    </template> 
+
+	<template id="report_assets_common_1" name="inspiringsol report assets common 1" inherit_id="web.report_assets_common">
+		<xpath expr="." >
+            <link rel="stylesheet" type="text/scss" href="/etmam_font/static/src/scss/font.scss"/>
+		</xpath>
+    </template> 
+</odoo> 

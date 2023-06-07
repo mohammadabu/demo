@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <record id="credit_attachment_list_1" model="credit.attachment.list">
+            <field name="name">شهادة تسجيل المؤسسة / الشركة (لمقدم الطلب)</field>
+        </record>
+        <record id="credit_attachment_list_2" model="credit.attachment.list">
+            <field name="name">شهادة الإنتساب للغرفة التجارية (لمقدم الطلب)</field>
+        </record>
+        <record id="credit_attachment_list_3" model="credit.attachment.list">
+            <field name="name">رخصة البلدية (لمقدم الطلب)</field>
+        </record>
+        <record id="credit_attachment_list_4" model="credit.attachment.list">
+            <field name="name">شهادة التسجيل في ضريبة القيمة المضافة (لمقدم الطلب)</field>
+        </record>
+        <record id="credit_attachment_list_5" model="credit.attachment.list">
+            <field name="name">التأمينات الإجتماعية (لمقدم الطلب)</field>
+        </record>
+        <record id="credit_attachment_list_6" model="credit.attachment.list">
+            <field name="name">هوية المالك أو الوكيل الشرعي مع صورة الوكالة (لمقدم الطلب)</field>
+        </record>
+    </data>
+</odoo>

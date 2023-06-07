@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Return Order Line Tree view -->
+        <record id="view_return_order_line_tree" model="ir.ui.view">
+            <field name="name">return.order.line.tree</field>
+            <field name="model">return.order.line</field>
+            <field name="arch" type="xml">
+                <tree string="Return Order Line">
+                    <field name="sale_order_id" invisible="1"/>
+                    <field name="product_id" />
+                    <field name="return_reason_id" required="1"/>
+                    <field name="deliver_qty" readonly="1" force_save="1"/>
+                    <field name="remain_qty" readonly="1" force_save="1"/>
+                    <field name="quantity" required="1"/>
+                    <field name="main_qty" invisible="1"/>
+                    <field name="unit_price" />
+                    <field name="tax_id" />
+                    <field name="subtotal" widget="monetary"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Return Order Line Form view -->
+        <record id="view_return_order_line_form" model="ir.ui.view">
+            <field name="name">return.order.line.form</field>
+            <field name="model">return.order.line</field>
+            <field name="arch" type="xml">
+                <form string="Return Order Line">
+                    <sheet>
+                        <group>
+                            <field name="sale_order_id" invisible="1"/>
+                            <field name="return_order_id" invisible="1"/>
+                            <field name="product_id" context="{'sale_order_id':sale_order_id}" required="1" options="{'no_create': True}"/>
+                            <field name="return_reason_id" required="1"/>
+                            <field name="deliver_qty" readonly="1" force_save="1"/>
+                            <field name="remain_qty" readonly="1" force_save="1"/>
+                            <field name="quantity" required="1"/>
+                            <field name="main_qty" invisible="1"/>
+                            <field name="unit_price"/>
+                            <field name="tax_id"/>
+                            <field name="subtotal" widget="monetary"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Return Order Line Action view -->
+        <record model="ir.actions.act_window" id="action_return_order_line">
+            <field name="name">Return Order Line</field>
+            <field name="res_model">return.order.line</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create new record
+                </p>
+            </field>
+        </record>
+    </data>
+</odoo>

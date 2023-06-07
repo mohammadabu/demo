@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+        <!--employee form -->
+        <record id="view_employee_form_human" model="ir.ui.view">
+            <field name="name">Human Employee</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="employee_no" />
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

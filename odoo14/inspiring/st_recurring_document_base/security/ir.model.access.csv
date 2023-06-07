@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_recurring_document_subscription_user,recurring.document.subscription.user,st_recurring_document_base.model_recurring_document_subscription,base.group_user,1,1,1,1
+access_recurring_document_field_user,recurring.document.field.user,st_recurring_document_base.model_recurring_document_field,base.group_user,1,1,1,1
+access_recurring_document_history_user,recurring.document.history.user,st_recurring_document_base.model_recurring_document_history,base.group_user,1,1,1,1
+access_recurring_document_config_user,recurring.document.config.user,st_recurring_document_base.model_recurring_document_config,base.group_user,1,1,1,1

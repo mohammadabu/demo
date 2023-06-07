@@ -1,0 +1,198 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* bi_import_multiple_bank_statement
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 13.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-05-31 14:19+0000\n"
+"PO-Revision-Date: 2021-05-31 14:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: bi_import_multiple_bank_statement
+#: code:addons/bi_import_multiple_bank_statement/models/multiple_bank_statement.py:0
+#, python-format
+msgid " \"%s\" Currency are not available."
+msgstr " \"%s\" Las divisas no están disponibles."
+
+#. module: bi_import_multiple_bank_statement
+#: code:addons/bi_import_multiple_bank_statement/models/multiple_bank_statement.py:0
+#, python-format
+msgid " \"%s\" Journal is not available."
+msgstr " \"%s\" El diario no está disponible."
+
+#. module: bi_import_multiple_bank_statement
+#. openerp-web
+#: code:addons/bi_import_multiple_bank_statement/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid "Automatic reconciliation"
+msgstr "Reconciliación automática"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model,name:bi_import_multiple_bank_statement.model_account_bank_statement_line
+msgid "Bank Statement Line"
+msgstr "Línea de extracto bancario"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model.fields.selection,name:bi_import_multiple_bank_statement.selection__account_multiple_bank_statement_wizard__file_opt__csv
+msgid "CSV"
+msgstr "CSV"
+
+#. module: bi_import_multiple_bank_statement
+#: model_terms:ir.ui.view,arch_db:bi_import_multiple_bank_statement.import_multiple_bank_statement_wizard
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model.fields,field_description:bi_import_multiple_bank_statement.field_account_multiple_bank_statement_wizard__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model.fields,field_description:bi_import_multiple_bank_statement.field_account_multiple_bank_statement_wizard__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model.fields,field_description:bi_import_multiple_bank_statement.field_account_multiple_bank_statement_wizard__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model.fields.selection,name:bi_import_multiple_bank_statement.selection__account_multiple_bank_statement_wizard__file_opt__excel
+msgid "Excel"
+msgstr "Sobresalir"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model.fields,field_description:bi_import_multiple_bank_statement.field_account_multiple_bank_statement_wizard__file
+msgid "File"
+msgstr "Archivo"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model.fields,field_description:bi_import_multiple_bank_statement.field_account_multiple_bank_statement_wizard__file_opt
+msgid "File Opt"
+msgstr "Opción de archivo"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model.fields,field_description:bi_import_multiple_bank_statement.field_account_multiple_bank_statement_wizard__id
+msgid "ID"
+msgstr "IDENTIFICACIÓN"
+
+#. module: bi_import_multiple_bank_statement
+#: model_terms:ir.ui.view,arch_db:bi_import_multiple_bank_statement.import_multiple_bank_statement_wizard
+msgid "Import"
+msgstr "Importar"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.actions.act_window,name:bi_import_multiple_bank_statement.action_import_multiple_bank_statement
+#: model:ir.ui.menu,name:bi_import_multiple_bank_statement.menu_import_multiple_bank_statement
+#: model_terms:ir.ui.view,arch_db:bi_import_multiple_bank_statement.import_multiple_bank_statement_wizard
+msgid "Import Multiple Bank Statement"
+msgstr "Importar extracto bancario múltiple"
+
+#. module: bi_import_multiple_bank_statement
+#: code:addons/bi_import_multiple_bank_statement/models/multiple_bank_statement.py:0
+#, python-format
+msgid "Invalid file!"
+msgstr "¡Archivo inválido!"
+
+#. module: bi_import_multiple_bank_statement
+#: code:addons/bi_import_multiple_bank_statement/models/multiple_bank_statement.py:0
+#, python-format
+msgid ""
+"Journal is different for \"%s\" .\n"
+" Please define same."
+msgstr ""
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model.fields,field_description:bi_import_multiple_bank_statement.field_account_multiple_bank_statement_wizard____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model.fields,field_description:bi_import_multiple_bank_statement.field_account_multiple_bank_statement_wizard__write_uid
+msgid "Last Updated by"
+msgstr "Actualizado por última vez por"
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model.fields,field_description:bi_import_multiple_bank_statement.field_account_multiple_bank_statement_wizard__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: bi_import_multiple_bank_statement
+#. openerp-web
+#: code:addons/bi_import_multiple_bank_statement/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid "Let odoo try to reconcile entries for the user"
+msgstr "Deja que odoo intente conciliar entradas para la usuaria."
+
+#. module: bi_import_multiple_bank_statement
+#. openerp-web
+#: code:addons/bi_import_multiple_bank_statement/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid "Load more"
+msgstr "Carga más"
+
+#. module: bi_import_multiple_bank_statement
+#. openerp-web
+#: code:addons/bi_import_multiple_bank_statement/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid "Nothing to do!"
+msgstr "¡Nada que hacer!"
+
+#. module: bi_import_multiple_bank_statement
+#. openerp-web
+#: code:addons/bi_import_multiple_bank_statement/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid "OK"
+msgstr "OK"
+
+#. module: bi_import_multiple_bank_statement
+#: code:addons/bi_import_multiple_bank_statement/models/multiple_bank_statement.py:0
+#, python-format
+msgid "Please Provide Date Field Value for Bank Statement."
+msgstr "Proporcione el valor del campo de fecha para el extracto bancario."
+
+#. module: bi_import_multiple_bank_statement
+#: code:addons/bi_import_multiple_bank_statement/models/multiple_bank_statement.py:0
+#, python-format
+msgid "Please Provide Date Field Value."
+msgstr "Proporcione el valor del campo de fecha."
+
+#. module: bi_import_multiple_bank_statement
+#: code:addons/bi_import_multiple_bank_statement/models/multiple_bank_statement.py:0
+#, python-format
+msgid "Please Provide Line Date Field Value"
+msgstr "Proporcione el valor del campo de fecha de línea"
+
+#. module: bi_import_multiple_bank_statement
+#. openerp-web
+#: code:addons/bi_import_multiple_bank_statement/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid ""
+"This page displays all the bank transactions that are to be reconciled and "
+"provides with a neat interface to do so."
+msgstr ""
+
+#. module: bi_import_multiple_bank_statement
+#. openerp-web
+#: code:addons/bi_import_multiple_bank_statement/static/src/xml/account_reconciliation.xml:0
+#, python-format
+msgid "Tip: Hit CTRL-Enter to reconcile all the balanced items in the sheet."
+msgstr "Consejo: presione CTRL-Enter para conciliar todos los elementos equilibrados en la hoja."
+
+#. module: bi_import_multiple_bank_statement
+#: model:ir.model,name:bi_import_multiple_bank_statement.model_account_multiple_bank_statement_wizard
+msgid "account.multiple.bank.statement.wizard"
+msgstr ""
+
+#. module: bi_import_multiple_bank_statement
+#: model_terms:ir.ui.view,arch_db:bi_import_multiple_bank_statement.import_multiple_bank_statement_wizard
+msgid "or"
+msgstr "o"

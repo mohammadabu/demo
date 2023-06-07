@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_Commande" >
+        <t t-call="web.html_container" >
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="web.external_layout" >
+                    <div style="margin-top:0px;">
+                    <h5 class="text-center" >Sales receipt</h5>
+                    Purchase order number: <t t-esc="doc.name"/><br/>
+                    Date of the order: <t t-esc="doc.date_order.strftime('%d/%m/%Y')"/><br/>
+                    Hour of the order: <t t-esc="doc.date_order.strftime('%H:%M:%S')"/><br/>
+                    Customer: <t t-esc="doc.partner_id.name"/><br/>
+                    <h6 class="text-right" >Salesperson: <t t-esc="doc.user_id.name"/></h6>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

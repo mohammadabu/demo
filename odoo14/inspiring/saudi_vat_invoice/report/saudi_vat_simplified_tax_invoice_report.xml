@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    account_move_simplified_report_document
+    <template id="saudi_vat_invoice.account_move_simplified_report_document">
+        <td valign="middle" align="right">
+
+            <!--                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>-->
+        </td>
+        <t t-debug=""></t>
+        <t t-call="web.external_layout">
+            <t t-set="doc" t-value="doc.with_context({'lang': lang})"/>
+            <div class="page">
+                <!-- Invoice fields-->
+                <t t-call="saudi_vat_invoice.report_simplified_vat_invoice_document" t-lang="ar"/>
+
+            </div>
+
+        </t>
+    </template>
+
+
+    <template id="saudi_vat_invoice.report_simplified_vat_invoice_document">
+        <td valign="middle" align="right">
+            <img t-attf-src="data:image/*;base64,{{doc.company_id.logo}}"
+                 style="margin: auto; display: block; height: 150px;"/>            <!--                    <img src="/logo.png?company=${object.company_id.id}" style="padding: 0px; margin: 0px; height: auto; width: 80px;" alt="${object.company_id.name}"/>-->
+        </td>
+
+        <style>
+            table {
+            border-collapse: collapse;
+
+
+            }
+            th {
+
+            padding: 8px;
+
+            }
+
+            th, td {
+
+            padding: 4px;
+
+            }
+
+        </style>
+        <h4 style="text-align:center;color:#6f7576;">فاتورة ضريبية مبسطة</h4>
+        <br/>
+        <br/>
+        <h4 style="text-align:center;margin-bottom:3em;margin-top:-2em;color:#6f7576;">Simplified Tax Invoice</h4>
+
+        <table style="width: 100%;">
+            <tr>
+                <td style="width: 20%;">Invoice Number</td>
+                <td style="text-align: left;width: 30%;">
+                    <t t-esc="doc.name"></t>
+                </td>
+                <td style="text-align: right; width: 30%;">
+                    <t t-esc="doc.name"></t>
+                </td>
+                <td style="text-align: right;">رقم الفاتورة</td>
+            </tr>
+        </table>
+        <table style="width: 100%;margin-top:12px;">
+            <tr>
+                <td style="width: 20%;">Invoice Issue Date</td>
+                <td style="text-align: left; width: 30%;">
+                    <t t-esc="doc.date_issue"></t>
+                </td>
+                <td style="text-align: right; width: 30%;">
+                    <t t-esc="doc.date_issue"></t>
+                </td>
+                <td style="text-align: right;">تاريخ إصدار الفاتورة</td>
+            </tr>
+        </table>
+        <br/>
+        <br/>
+        <br/>
+        <table style="width:100%">
+            <tr>
+                <th style="background-color:#434343; color:#fff;">Nature of goods or services<br/>طبيعة البضائع أو
+                    الخدمات باللغة العربية
+                </th>
+                <th style="background-color:#434343; color:#fff;">unit Price<br/>سعر الوحدة
+                </th>
+                <th style="background-color:#434343; color:#fff;">Quantity<br/>كمية
+                </th>
+                <th style="background-color:#434343;color:#fff;">Item Subtotal (Including VAT)<br/>المجموع الفرعي للعنصر
+                    <br/>
+                    (بما في ذلك ضريبة القيمة المضافة)
+                </th>
+            </tr>
+            <tbody class="sale_tbody">
+
+                <!--                <td style="width: 35%;">Item - A</td>-->
+                <!--                <td style="text-align:left;width: 15%;">200.00 SAR</td>-->
+                <!--                <td style="text-align:right">1</td>-->
+                <!--                <td style="text-align:right">230.00 SAR</td>-->
+
+                <!--            <tr>-->
+                <!--                <td style="width: 35%;">Item - B</td>-->
+                <!--                <td style="text-align:left;width: 15%;">350.00 SAR</td>-->
+                <!--                <td style="text-align:right">2</td>-->
+                <!--                <td style="text-align:right">805.SAR</td>-->
+                <!--            </tr>-->
+
+                <tr t-foreach="doc.invoice_line_ids" t-as="line">
+                    <td style="width: 35%;">
+                        <span t-esc="line.product_id.name"/>
+                    </td>
+                    <td style="text-align:left;width: 15%;">
+                        <span t-esc="line.price_unit"/>
+                    </td>
+                    <td style="text-align:right">
+                        <span t-esc="line.quantity"/>
+                    </td>
+                    <td style="text-align:right">
+                        <span t-esc="line.price_subtotal"/>
+                    </td>
+
+
+                </tr>
+            </tbody>
+        </table>
+        <br/>
+        <br/>
+        <br/>
+        <table style="width: 100%;border-top: 1px solid #000;border-bottom: 1px solid #000;">
+            <tr>
+                <td style="width: 30%;">Total taxable Amount<br/>(Excluding VAT)
+                </td>
+                <td style="text-align:right;width: 25%;font-size:12px;">إجمالي المبلغ الخاضع للضريبة<br/>(باستثناء ضريبة
+                    القيمة المضافة)
+                </td>
+                <td style="text-align:right">
+                    <span t-esc="doc.amount_untaxed"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 30%;">Total VAT</td>
+                <td style="text-align:right;width: 25%;font-size:12px;">إجمالي ضريبة القيمة المضافة</td>
+                <td style="text-align:right">
+                    <span t-esc="doc.amount_tax"></span>
+                </td>
+            </tr>
+            <tr>
+                <td style="width: 30%;">Total Amount Due</td>
+                <td style="text-align:right;width: 35%;font-size:12px;">إجمالي المبلغ المستحق</td>
+                <td style="text-align:right;width: 35%;">
+                    <span t-esc="doc.amount_residual"></span>
+                </td>
+            </tr>
+        </table>
+        <br/>
+        <br/>
+        <br/>
+        <div style="text-align: center !important; ">
+
+            <img t-attf-src="data:image/*;base64,{{doc.qr_code}}" style="width:180px; height:180px;"/>
+        </div>
+        
+    </template>
+</odoo>

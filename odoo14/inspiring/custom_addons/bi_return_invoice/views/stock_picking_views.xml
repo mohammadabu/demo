@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <!-- Add the smart button for view the Credit Note from picking -->
+    <record id="stock_picking_form_view_inherited" model="ir.ui.view">
+        <field name="name">stock.picking.form.view.inherited</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_open_picking_invoice" type="object"
+                        class="oe_stat_button" icon="fa-file-text"
+                        attrs="{'invisible': [('invoice_count','=', 0)]}">
+                    <field name="invoice_count" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+</odoo>

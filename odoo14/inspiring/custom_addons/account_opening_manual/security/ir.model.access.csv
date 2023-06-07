@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_partner_account,access_partner_account,model_partner_account,base.group_user,1,1,1,1
+access_partner_account_details,access_partner_account_details,model_partner_account_details,base.group_user,1,1,1,1
+access_partner_account_cancel,access_partner_account_cancel,model_partner_account_cancel,base.group_user,1,1,1,1

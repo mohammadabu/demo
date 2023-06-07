@@ -1,0 +1,58 @@
+<odoo>
+    <data>
+        <record id="edit_vendor_bills_states" model="ir.ui.view">
+            <field name="name">Edit Vendor Bills States</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="replace">
+                    <field name="state" widget="statusbar" statusbar_visible="draft,manager_approval,accounting,head_of_accounting,posted" invisible="1"/>
+                    <field name="stand_states" attrs="{'invisible': [('states_type', '!=', 'stand')]}" widget="statusbar" statusbar_visible="draft,posted" />
+                    <field name="ven_states" attrs="{'invisible': [('states_type', '!=', 'ven')]}" widget="statusbar" statusbar_visible="draft,manager_approval,accounting,head_of_accounting,posted" />
+                    <field name="gov_states" attrs="{'invisible': [('states_type', '!=', 'gov')]}" widget="statusbar" statusbar_visible="draft,manager_approval,accounting,head_of_accounting,posted" />
+                    <field name="emp_states" attrs="{'invisible': [('states_type', '!=', 'emp')]}" widget="statusbar" statusbar_visible="draft,manager_approval,accounting,head_of_accounting,posted" />
+                </xpath>
+                <xpath expr="//button[@name='action_post'][1]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '&amp;', ('states_type', '!=', 'stand'), '|', ('emp_has_permission', '=', 'no'), ('state', '!=', 'head_of_accounting'), '&amp;', ('states_type', '=', 'stand'), '|', ('auto_post', '=', True), '|', ('move_type', '=', 'entry'), ('state', '!=', 'draft')]}</attribute>
+                </xpath>
+                <xpath expr="//button[@name='action_post'][2]" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '&amp;', ('states_type', '!=', 'stand'), '|', ('emp_has_permission', '=', 'no'), ('state', '!=', 'head_of_accounting'), '&amp;', ('states_type', '=', 'stand'), '|', ('auto_post', '=', True), '|', ('move_type', '=', 'entry'), ('state', '!=', 'draft')]}</attribute>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="manager_approval_state" string="Send to Manager Approval" type="object"
+                            attrs="{'invisible': ['|', '&amp;', ('states_type', '!=', 'stand'), '|', ('emp_has_permission', '=', 'no'), ('state', '!=', 'draft'), ('states_type', '=', 'stand')]}"/>
+
+                    <!-- <button name="manager_approval_state_123" string="Send to Manager Approval 123" type="object" />  -->
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="accounting_state" string="Send to Accounting" type="object"
+                            attrs="{'invisible': ['|', '&amp;', ('states_type', '!=', 'stand'), '|', ('emp_has_permission', '=', 'no'), ('state', '!=', 'manager_approval'), ('states_type', '=', 'stand')]}"/>
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="head_of_accounting_state" string="Send to Head of Accounting"  type="object"
+                            attrs="{'invisible': ['|', '&amp;', ('states_type', '!=', 'stand'), '|', ('emp_has_permission', '=', 'no'), ('state', '!=', 'accounting'), ('states_type', '=', 'stand')]}" />
+                </xpath>
+                <xpath expr="//group/group[1]" position="inside">
+                    <field name="emp_has_permission" invisible="1"/>
+                    <field name="states_type"  invisible="1"/>
+                </xpath>
+                <xpath expr="//field[@name='partner_bank_id']" position="after">
+                     <field name="employee" attrs="{'invisible': [('bill_type', '!=', 'employee')]}"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="edit_purchase_bills" model="ir.ui.view">
+            <field name="name">Edit Purchase Bills</field>
+            <field name="model">account.move</field>
+            <field name='inherit_id' ref="purchase.view_move_form_inherit_purchase" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='purchase_vendor_bill_id']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '|', ('state','!=','draft'), ('move_type', '!=', 'in_invoice'), ('bill_type', '=', 'employee')]}</attribute>
+                </xpath>
+                <xpath expr="//label[@for='purchase_vendor_bill_id']" position="attributes">
+                    <attribute name="attrs">{'invisible': ['|', '|', ('state','!=','draft'), ('move_type', '!=', 'in_invoice'), ('bill_type', '=', 'employee')]}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

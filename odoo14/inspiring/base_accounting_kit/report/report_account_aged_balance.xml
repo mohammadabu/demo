@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+        <report
+            id="action_report_print_account_aged_balance"
+            model="account.aged.trial.balance.new"
+            report_type="qweb-pdf"
+            string="Aged Partner Balance"
+            name="base_accounting_kit.report_aged_balance_print"
+            file="base_accounting_kit.report_aged_balance_print"
+            menu="False"
+        />
+</odoo>

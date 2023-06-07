@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="cancel_partner_account_wizard" model="ir.ui.view">
+        <field name="name">cencel.partner.account.wizard</field>
+        <field name="model">partner.account.cancel</field>
+        <field name="arch" type="xml">
+            <form string="Message">
+                <h3>Select Account For Cancel</h3>
+                <group>
+                    <field name="receivable"/>
+                    <field name="payble"/>
+                    <field name="bandc"/>
+                </group>
+                <footer>
+                    <button string="Ok" name="cancel_entry" type="object"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>    
+    </record>
+
+    <record id="cancel_parter_account_wizard_action" model="ir.actions.act_window">
+        <field name="name">Cancel Entry</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">partner.account.cancel</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="cancel_partner_account_wizard"/>
+        <field name="target">new</field>
+    </record>
+
+
+
+
+</odoo>

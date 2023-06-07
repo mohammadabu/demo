@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+
+{
+    'name': 'Sample Product',
+    'version': '1.0',
+    'author': "Synconics Technologies Pvt. Ltd.",
+    'category': '',
+    'depends': ['sale','purchase','delivery','stock'],
+    'application': True,
+    'description': """ """,
+    "website": "http://www.synconics.com",
+    'demo': [
+    ],
+    "data": [
+        'security/ir.model.access.csv',
+        'data/stock_data_location.xml',
+        'views/purchase_order_view.xml',
+        'views/sale_order_view.xml',
+        'views/product.xml',
+        'views/stock_location.xml',
+        'views/inherit_sale_config_settings.xml',
+    ],
+    'images': ['static/description/main_screen.png'],
+    "demo": [],
+    'test':[],
+    'css': [],
+    'js': [],
+    'qweb': [],
+    'price': 40.0,
+    'currency': 'USD',
+    'installable': True,
+    'application': True,
+    'auto_install': False,
+    'license': 'OPL-1',
+}

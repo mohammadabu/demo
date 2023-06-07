@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="res_config_settings_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='main_currency_setting_container']" position="after">
+                <h2>QR CODE</h2>
+                <style>
+                    .o_setting_box {
+                    margin-bottom: 8px;
+                    margin-top: 8px;
+                    }
+                    .o_setting_right_pane {
+                    margin-left: 30px;
+                    border-left: 1px solid #bbbbbb;
+                    padding-left: 10px;
+                    }
+                </style>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-12 col-lg-6 o_setting_box" id="qr_code">
+                        <div class="o_setting_left_pane"></div>
+                        <div class="o_setting_right_pane">
+                            <label for="qr_code_generation_config"/>
+                            <div class="text-muted">
+                                QR Code Generation Method
+                            </div>
+                            <div class="mt16">
+                                <field name="qr_code_generation_config" class="o_light_label" widget="radio"/>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+
+    </record>
+    <record id="res_company_view_form_inherit" model="ir.ui.view">
+        <field name="name">res.company.view.form.inherit</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="qr_code_generation_config" class="o_light_label" invisible="1"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

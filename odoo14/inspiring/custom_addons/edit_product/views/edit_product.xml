@@ -1,0 +1,56 @@
+<odoo>
+    <data>
+        <!-- <record id="edit_product_form_new_fields" model="ir.ui.view">
+            <field name="name">product.form.new.fields</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='standard_price']" position="attributes">
+                    <attribute name="groups">base.inventory_manager</attribute>
+                </xpath>
+            </field>
+        </record> -->
+
+        <record model="ir.ui.view" id="view_product_new_field_form">
+    		<field name="name">product.new.field.form</field>
+    		<field name="model">product.template</field>
+    		<field name="inherit_id" ref="product.product_template_form_view"/>
+    		<field name="arch" type="xml">
+        		<xpath expr="//page[@name='general_information']" position="inside">
+                	<field name="expiration_date"/>
+                </xpath>
+    		</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_product_new_field_tree">
+    		<field name="name">product.new.field.tree</field>
+    		<field name="model">product.template</field>
+    		<field name="inherit_id" ref="product.product_template_tree_view"/>
+    		<field name="arch" type="xml">
+        		<xpath expr="//field[@name='default_code']" position="after">
+                	<field name="expiration_date"/>
+                </xpath>
+    		</field>
+		</record>
+		
+		<record model="ir.ui.view" id="view_product_new_field_kanban">
+    		<field name="name">product.new.field.kanban</field>
+    		<field name="model">product.template</field>
+    		<field name="inherit_id" ref="product.product_template_kanban_view"/>
+    		<field name="arch" type="xml">
+        		<xpath expr="//strong[@class='o_kanban_record_title']" position="after">
+					<t t-if="record.expiration_date.value"><field name="expiration_date"/></t>
+                	
+                </xpath>
+    		</field>
+		</record>
+
+        <record id="increment_your_field_sequence" model="ir.sequence">
+            <field name="name">Field Incrementation</field>
+            <field name="code">increment_your_field</field>
+            <field name="prefix">IR</field>
+            <field name="padding">7</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="stock_location_sample_location" model="stock.location">
+        <field name="name">Samples Location</field>
+        <field name="posx">0</field>
+        <field name="is_sample_location">True</field>
+        <field name="location_id" model="stock.location"
+            eval="obj().env.ref('stock.warehouse0').lot_stock_id.id"/>           
+    </record>
+</odoo>

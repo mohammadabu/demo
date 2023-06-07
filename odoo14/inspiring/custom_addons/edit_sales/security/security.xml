@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_delete_sales_order" model="res.groups">
+        <field name="name">Delete Sale Orders</field>
+    </record>
+</odoo>

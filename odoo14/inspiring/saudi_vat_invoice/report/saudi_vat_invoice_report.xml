@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+<!--        <report id="action_summary_report" string="Dispatch Summary" model="stock.picking" report_type="qweb-pdf"-->
+<!--                file="qg_dispatch_summary.summary_report_template" name="qg_dispatch_summary.summary_report_template"-->
+<!--                print_report_name="'Dispatch Summary - %s - %s' % (object.location_dest_id.name or '', object.name)"/>-->
+        <record id="paperformat_lowmargin" model="report.paperformat">
+            <field name="name">European A4 low margin</field>
+            <field name="default" eval="True"/>
+            <field name="format">A4</field>
+            <field name="page_height">0</field>
+            <field name="page_width">0</field>
+            <field name="orientation">Portrait</field>
+            <field name="margin_top">5</field>
+            <field name="margin_bottom">5</field>
+            <field name="header_line" eval="False"/>
+            <field name="header_spacing">35</field>
+            <field name="dpi">90</field>
+        </record>
+        <record id="action_report_saudi_vat_invoice" model="ir.actions.report">
+            <field name="paperformat_id" ref="paperformat_lowmargin"/>
+             <field name="name">VAT Invoice</field>
+             <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+             <field name="report_name">saudi_vat_invoice.report_vat_invoice</field>
+            <field name="report_file">saudi_vat_invoice.report_vat_invoice</field>
+
+        </record>
+
+        <record id="action_report_saudi_vat_invoice_branch" model="ir.actions.report">
+            <field name="paperformat_id" ref="paperformat_lowmargin"/>
+             <field name="name">VAT Invoice Branch </field>
+             <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+             <field name="report_name">saudi_vat_invoice.report_vat_invoice_branch</field>
+            <field name="report_file">saudi_vat_invoice.report_vat_invoice_branch</field>
+
+        </record>
+
+        <record id="action_report_simplified_saudi_vat_invoice" model="ir.actions.report">
+            <field name="paperformat_id" ref="paperformat_lowmargin"/>
+             <field name="name">Simplified VAT Invoice</field>
+            <field name="model">account.move</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">saudi_vat_invoice.report_simplified_vat_invoice_document_id</field>
+            <field name="report_file">saudi_vat_invoice.report_simplified_vat_invoice_document_id</field>
+        </record>
+
+
+        	<template id="assets_backend" name="vat invoice assets" inherit_id="web.assets_backend">
+                <xpath expr="." position="inside">
+                       <link rel="stylesheet" href="/saudi_vat_invoice/static/src/css/style.css"/>
+                </xpath>
+            </template>
+
+        <report
+                id="action_report_saudi_vat_invoice"
+                string="VAT Invoice"
+                model="account.move"
+                report_type="qweb-pdf"
+                file="saudi_vat_invoice.report_vat_invoice"
+                name="saudi_vat_invoice.report_vat_invoice"
+                print_report_name="'VAT Invoice -%s' %(object.partner_id.name)"/>
+        
+        <report
+            id="action_report_saudi_vat_invoice_branch"
+            string="VAT Invoice Branch"
+            model="account.move"
+            report_type="qweb-pdf"
+            file="saudi_vat_invoice.report_vat_invoice_branch"
+            name="saudi_vat_invoice.report_vat_invoice_branch"
+            print_report_name="'VAT Invoice Branch -%s' %(object.partner_id.name)"/>
+
+        <report
+                id="action_report_simplified_saudi_vat_invoice"
+                string="Simplified Tax Invoice"
+                model="account.move"
+                report_type="qweb-pdf"
+                file="saudi_vat_invoice.report_simplified_vat_invoice_document_id"
+                name="saudi_vat_invoice.report_simplified_vat_invoice_document_id"
+                print_report_name="'Simplified VAT Invoice -%s' %(object.partner_id.name)"/>
+
+    </data>
+</odoo>

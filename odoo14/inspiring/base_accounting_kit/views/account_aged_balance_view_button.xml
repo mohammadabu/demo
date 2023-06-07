@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- <record id="account_aged_balance_view_button" model="ir.ui.view">
+            <field name="name">account_aged_balance_view_buttonLimit</field>  
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">  
+                    <header>
+                        <button string="Aged Partner Balance" name="open_aged_partner" type="object" class="oe_highlight" /> 
+                    </header>    
+                </xpath>
+            </field>
+        </record> -->
+    </data>
+</odoo>

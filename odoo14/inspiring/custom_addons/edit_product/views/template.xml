@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <template id="custom_product_print_document"  inherit_id="product.report_simple_label" >
+        <xpath expr="//div/table"  position="inside">
+            <tr>
+                <td style="height: 2rem">
+                    <strong>Arabic Name:</strong>
+                    <strong t-field="product.name_arabic"/>
+                    <br/>
+                    <strong>On hand Quantity:</strong>
+                    <strong t-field="product.qty_available"/>
+                    <br/>
+                    <strong>Product Type:</strong>
+                    <strong t-field="product.type"/>
+                    <br/>
+                    <strong>Product Category:</strong>
+                    <strong t-field="product.categ_id"/>
+                    <br/>
+                    <strong>Unit of Measure:</strong>
+                    <strong t-field="product.uom_id"/>
+                    <br/>
+                    <strong>Purchase Unit of Measure:</strong>
+                    <strong t-field="product.uom_po_id"/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+</odoo> 

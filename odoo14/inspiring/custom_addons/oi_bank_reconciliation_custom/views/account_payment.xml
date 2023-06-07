@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+	<record id="view_account_payment_search" model="ir.ui.view">
+		<field name="name">account.payment.search.reconciliation.inherit</field>
+		<field name="model">account.payment</field>
+		<field name="inherit_id" ref="oi_bank_reconciliation.view_account_payment_search" />
+		<field name="priority">100</field>
+		<field name="arch" type="xml">
+			<field name="partner_id" position="attributes">
+				<attribute name="filter_domain">['|',('partner_id','child_of',self),('partner_id','parent_of',self)]</attribute>
+			</field>
+		</field>
+	</record>
+	
+</odoo>

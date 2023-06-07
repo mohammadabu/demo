@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <record id="custom_manage_payment_terms" model="res.groups">
+            <field name="name">Manage Payment Terms</field>
+            <field name="comment">Custom group for managing payment terms</field>
+            <field name="category_id" ref="base.module_category_hidden"/>
+        </record>
+    </data>
+</odoo>

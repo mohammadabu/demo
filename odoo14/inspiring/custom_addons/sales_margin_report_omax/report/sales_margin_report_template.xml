@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="paperformat_sales_margin_omax" model="report.paperformat">
+        <field name="name">Sales Margin Report Paperformat</field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="page_height">297</field>
+        <field name="page_width">210</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">47</field>
+        <field name="margin_bottom">28</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">45</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+        string="Sales Margin Report"
+        id="action_sale_margin_report_menu"
+        model="sale.margin.report.wizard"
+        report_type="qweb-pdf"
+        name="sales_margin_report_omax.report_sale_margin_omax"
+        file="sales_margin_report_omax.report_sale_margin_omax"
+        paperformat="sales_margin_report_omax.paperformat_sales_margin_omax"
+    />
+
+    <template id="sales_margin_omax_report_pdf">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <div class="oe_structure"/>
+                <center><strong><h2>Sales Margin Report</h2></strong></center>
+                <br/>
+                <div class="row justify-content-center mt-2 mb-2">
+                    <div class="col-7">
+                        <strong>Start Date :</strong>
+                        <span t-field="doc.start_date" t-options='{"format": "dd/MM/yyyy"}'/>
+                    </div>
+                    <div class="col-7">
+                        <strong>End Date :</strong>
+                        <span t-field="doc.end_date" t-options='{"format": "dd/MM/yyyy"}'/>
+                    </div>
+                </div>
+                
+                <t t-set="total_untaxed_amount" t-value="0"/>
+                <t t-set="total_discount" t-value="0"/>
+                <t t-set="total_tax" t-value="0"/>
+                <t t-set="total_subtotal" t-value="0"/>
+                <t t-set="total_margin" t-value="0"/>
+                
+                <table class="table table-sn mt20 mb20">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Order Ref</th>
+                            <th class="text-left">Product</th>
+                            <th class="text-left">Salesperson</th>
+                            <th class="text-left">Date</th>
+                            <th class="text-left">Qty</th>
+                            <th class="text-left">Unit Price</th>
+                            <th class="text-right">Cost</th>
+                            <th class="text-right">Untaxed Amount</th>
+                            <th class="text-right">Discount</th>
+                            <th class="text-right">Tax</th>
+                            <th class="text-right">Subtotal</th>
+                            <th class="text-right">Margin Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="sale_orders" t-as="order">
+                            <t t-foreach="order.order_line" t-as="lines">
+                                <tr>
+                                    <t t-set="discount" t-value="0"/>
+                                    <t t-set="tax" t-value="0"/>
+                                    <t t-set="margin" t-value="0"/>
+                                    <td class="text-left"><span t-field="order.name"/></td>
+                                    <td class="text-left"><span t-if="lines.product_id" t-field="lines.product_id.name"/></td>
+                                    <td class="text-left"><span t-if="order.user_id" t-field="order.user_id.name"/></td>
+                                    <td class="text-left">
+                                        <span t-if="order.date_order" t-field="order.date_order" t-options='{"format": "dd/MM/yyyy"}'/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="lines.product_uom_qty" t-field="lines.product_uom_qty"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="lines.price_unit" t-field="lines.price_unit"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-if="lines.product_id" t-field="lines.product_id.standard_price"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="lines.price_subtotal"/>
+                                        <t t-set="total_untaxed_amount" t-value="total_untaxed_amount + lines.price_subtotal"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-set="discount" t-value="(((lines.price_unit * lines.product_uom_qty) * lines.discount) / 100)"/>
+                                        <span t-esc="round(discount,2)"/>
+                                        <t t-set="total_discount" t-value="total_discount + discount"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-set="tax" t-value="(lines.price_total-lines.price_subtotal)"/>
+                                        <span t-esc="round(tax,2)"/>
+                                        <t t-set="total_tax" t-value="total_tax + tax"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="lines.price_total"/>
+                                        <t t-set="total_subtotal" t-value="total_subtotal + lines.price_total"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-set="margin" t-value="((lines.product_uom_qty * (lines.price_unit-lines.product_id.standard_price)) - discount)"/>
+                                        <t t-if="margin &gt; 0">
+                                            <b><span style="color: green;" t-esc="round(margin,2)"/></b>
+                                        </t>
+                                        <t t-if="margin &lt; 0">
+                                            <b><span style="color: red;" t-esc="round(margin,2)"/></b>
+                                        </t>
+                                        <t t-if="margin == 0">
+                                            <b><span style="color: green;" t-esc="round(margin,2)"/></b>
+                                        </t>
+                                        <t t-set="total_margin" t-value="total_margin + margin"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                    </tbody>
+                </table>
+                
+                
+                <div class="clearfix" name="so_total_summary">
+                    <div id="total" class="row" name="total">
+                        <div t-attf-class="#{'col-4' if report_type != 'html' else 'col-sm-7 col-md-5'} ml-auto">
+                            <table class="table table-sm">
+                                <tr class="border-black o_subtotal" style="">
+                                    <td><strong>Total Untaxed Amount</strong></td>
+                                    <td class="text-right">
+                                        <b><span t-esc="round(total_untaxed_amount,2)"/></b>
+                                    </td>
+                                </tr>
+                                <tr class="border-black o_subtotal" style="">
+                                    <td><strong>Total Discount</strong></td>
+                                    <td class="text-right">
+                                        <b><span t-esc="round(total_discount,2)"/></b>
+                                    </td>
+                                </tr>
+                                <tr class="border-black o_subtotal" style="">
+                                    <td><strong>Total Tax</strong></td>
+                                    <td class="text-right">
+                                        <b><span t-esc="round(total_tax,2)"/></b>
+                                    </td>
+                                </tr>
+                                <tr class="border-black o_subtotal" style="">
+                                    <td><strong>Total Margin</strong></td>
+                                    <td class="text-right">
+                                        <t t-if="total_margin &gt; 0">
+                                            <b><span style="color: green;" t-esc="round(total_margin,2)"/></b>
+                                        </t>
+                                        <t t-if="total_margin &lt; 0">
+                                            <b><span style="color: red;" t-esc="round(total_margin,2)"/></b>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr class="border-black o_subtotal" style="">
+                                    <td><strong>Total</strong></td>
+                                    <td class="text-right">
+                                        <b><span t-esc="round(total_subtotal,2)"/></b>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                
+                
+            </div>
+        </t>
+    </template>
+    
+    <template id="report_sale_margin_omax">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="sales_margin_report_omax.sales_margin_omax_report_pdf"/>
+            </t>
+        </t>
+    </template>
+</odoo>

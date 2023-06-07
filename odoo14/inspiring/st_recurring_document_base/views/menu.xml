@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<menuitem id="menu_recurring" sequence="20"
+		name="Recurring Documents" parent="base.menu_administration" />
+</odoo>

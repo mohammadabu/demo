@@ -1,0 +1,18 @@
+1) Version: 14.0.0.1 | Date : 14/10/2020
+-->  Fixed the issue, when no file is uploaded and click on import button.
+-->  Fixed the issue, when select the XLS option and upload CSV file.
+-->  Fixed the issue, when wrong date formate is given.
+
+=> 14.0.0.2 : Add French, Spanish , Arabic and Dutch translation in module also improved an index.
+
+=> 14.0.0.3 : Improved an index as per latest changes.
+
+
+Version: 14.0.0.4 | 30/09/2021 :-
+	- Traceback occurred when importing excel file with having number in the reference Column, solved this issue.
+
+14.0.0.5 (27-12-2021) : IMprovements on app, developements added fields days, account_number.
+
+=> 14.0.0.6 : Improved an index as per latest improvements.
+
+14.0.0.7 (17-1-2022) : Fix issue, field lable and ref. getting same value while importing data.

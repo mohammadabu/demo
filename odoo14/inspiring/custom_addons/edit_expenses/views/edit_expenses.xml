@@ -1,0 +1,17 @@
+<odoo>
+    <data>
+        <record id="edit_expenses_form" model="ir.ui.view">
+            <field name="name">Edit Expenses Form</field>
+            <field name="model">hr.expense</field>
+            <field name="inherit_id" ref="hr_expense.hr_expense_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/group[2]" position="inside">
+                    <field name="po_number" placeholder="PO Number" class="o_po_number" />
+                </xpath>
+                <xpath expr="//group/group[2]" position="inside">
+                    <field name="po_file" class="o_po_file"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

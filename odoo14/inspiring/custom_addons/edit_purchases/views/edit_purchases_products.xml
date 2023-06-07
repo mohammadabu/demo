@@ -1,0 +1,20 @@
+<odoo>
+    <data>
+        <record id="disable_product_fields" model="ir.ui.view">
+            <field name="name">Disable product fields</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='price_unit']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', 'in', ('purchase', 'done'))]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='product_qty']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', 'in', ('purchase', 'done'))]}</attribute>
+                </xpath>
+                <xpath expr="//field[@name='taxes_id']" position="attributes">
+                    <attribute name="attrs">{'readonly': [('state', 'in', ('purchase', 'done'))]}</attribute>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

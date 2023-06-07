@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <!-- Return Order Tree view -->
+        <record id="view_return_order_tree" model="ir.ui.view">
+            <field name="name">return.order.tree</field>
+            <field name="model">return.order</field>
+            <field name="arch" type="xml">
+                <tree string="return order">
+                    <field name="return_numb"/>
+                    <field name="user_id"/>
+                    <field name="date"/>
+                    <field name="partner_id" />
+                    <field name="order_id"/>
+                    <field name="currency_id" invisible="1"/> 
+                    <field name="total_amount" sum="Total" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                    <field name="return_in_state" invisible="1"/>
+                    <field name="state" optional="show" widget="badge"
+                    decoration-muted="state == 'draft'"
+                    decoration-info="state == 'approved'"
+                    decoration-success="state == 'returned'"
+                    decoration-danger="state == 'cancel'"/>
+                </tree>
+            </field>
+        </record>
+
+        <!-- Return Order Form view -->
+        <record id="view_return_order_form" model="ir.ui.view">
+            <field name="name">return.order.form</field>
+            <field name="model">return.order</field>
+            <field name="arch" type="xml">
+                <form string="return order">
+                    <field name="check_position" invisible="1" />
+                    <header>
+                        <button name="action_draft" string="Set to Draft" class="oe_highlight" type="object" states="cancel"/>
+                        <button name="action_to_approve" string="Confirm" class="oe_highlight" type="object" states="draft"/>
+                        <button name="action_return" string="Return" class="oe_highlight" type="object"  attrs = "{'invisible': ['|',('check_position', '=', False), ('state' , '=', 'returned')]}"/>
+                        <button name="action_cancel" string="Cancel" type="object" class="oe_highlight"  attrs = "{'invisible': ['|',('check_position', '=', False), ('state', 'not in', ['draft','approved'])]}"/>
+                        
+                        <field name="state" widget="statusbar" statusbar_visible="draft,approved,returned,cancel"/>
+
+                    </header>
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_picking_delivery"
+                                type="object"
+                                class="oe_stat_button" attrs="{'invisible': [('delivery_count', '=', 0)]}"
+                                icon="fa-pencil-square-o"
+                                >
+                                <field name="delivery_count" widget="statinfo" string="Delivery Orders"/>
+                            </button>
+                            <button name="action_return_pickings"
+                                type="object"
+                                class="oe_stat_button" attrs="{'invisible': [('return_pickings_count', '=', 0)]}"
+                                icon="fa-pencil-square-o">
+                                <field name="return_pickings_count" widget="statinfo" string="Return Pickings"/>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <h1><field name="return_numb" /></h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_id" readonly="1" force_save="1"/>
+                                <field name="date" readonly="1" force_save="1"/>
+                                <!-- added by zakaria to handle the RTV number -->
+                                <field name="RTV_num"/>
+                            </group>
+                            <group>
+                                <field name="partner_id" required="1" options="{'no_create': True}" attrs="{'readonly':[('state','in',['returned','approved','cancel'])]}"/>
+                                <!-- <field name="order_id" context="{'default_partner_id':partner_id}" domain="['&amp;',('partner_id', '=', partner_id), '&amp;',('state', '=', 'sale'), ('so_done', '=', False)]" required="0" attrs="{'readonly':[('state','in',['returned','approved','cancel'])]}"/> -->
+                                <field name="return_in_state" />
+                                <!-- added by zakaria to handle the RTV document and date -->
+                                <field name="RTV_Date"/>
+                                <field name="RTV_Doc" class="o_cr_file"/>
+                                <field name="in_picking_id" invisible="1"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page name="return_order" string="Return Order Lines">
+                                <field name="return_order_line_ids" nolabel="1" attrs="{'readonly':[('state','in',['returned','approved','cancel'])]}">
+                                    <tree string="Return Order Line" editable="bottom">
+                                        <field name="sale_order_id" invisible="1"/>
+                                        <field name="return_order_id" invisible="1"/>
+                                        <field name="product_id" context="{'sale_order_id':sale_order_id}" required="1" options="{'no_create': True}"/>
+                                        <field name="product_found" invisible="1"/>
+                                        <!-- <field name="deliver_qty" readonly="1" force_save="1"/>
+                                        <field name="remain_qty" readonly="1" force_save="1"/> -->
+                                        <field name="quantity" required="1"/>
+                                        <field name="main_qty" invisible="1"/>
+                                        <field name="sale_order_line_id" invisible="1"/>
+                                        <field name="qty_to_select" invisible="1" force_save="1"/>
+                                        <field name="return_reason_id" required="1"/>
+                                        <field name="unit_price"/>
+                                        <field name="currency_id" invisible="1"/>
+                                        <field name="tax_id" widget="many2many_tags"/>
+                                        <field name="subtotal" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                    </tree>
+                                </field>
+                                <group class="oe_subtotal_footer oe_right" colspan="2" name="total">
+                                    <field name="currency_id" invisible="1"/> 
+                                    <field name="total_amount" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <field name="amount_tax" widget='monetary' options="{'currency_field': 'currency_id'}"/>
+                                    <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                        <label for="final_total"/>
+                                    </div>
+                                    <field name="final_total" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread"/>
+                    </div>
+                </form>
+            </field>
+                <!-- <xpath expr="//field[@name='action_cancel']" position="attributes">
+                    <attribute name="options">{'invisible': [('check_position', '=', False)]}</attribute>
+                </xpath> -->
+        </record>
+
+        <!-- Return Order Action view -->
+        <record model="ir.actions.act_window" id="action_return_order">
+            <field name="name">Return Orders</field>
+            <field name="res_model">return.order</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create new record
+                </p>
+            </field>
+        </record>
+
+        <!-- Return Reason Tree view -->
+        <record id="view_return_tree" model="ir.ui.view">
+            <field name="name">return.reason.tree</field>
+            <field name="model">return.reason</field>
+            <field name="arch" type="xml">
+                <tree string="Return Reason">
+                    <field name="return_name" />
+                </tree>
+            </field>
+        </record>
+
+        <!-- Return Reason Form view -->
+        <record id="view_return_form" model="ir.ui.view">
+            <field name="name">return.reason.form</field>
+            <field name="model">return.reason</field>
+            <field name="arch" type="xml">
+                <form string="Return Reason">
+                    <sheet>
+                        <group>
+                            <field name="return_name" required="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- Return Reason Action view -->
+        <record model="ir.actions.act_window" id="action_view_return">
+            <field name="name">Return</field>
+            <field name="res_model">return.reason</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Create new reason
+                </p>
+            </field>
+        </record>
+
+        <!-- Return Root Menu -->
+        <menuitem id="menu_return" name="Return Orders" web_icon="so_product_return,static/description/icon.png" />
+
+        <!-- Return Order Menu -->
+        <menuitem id="menu_return_order" name="Return Orders" parent="menu_return"
+                  action="action_return_order" sequence="1"/>
+        <!-- Return Reason Menu -->     
+        <menuitem id="return_reason" name="Return Reason" parent="menu_return"
+                  action="action_view_return" sequence="2"/>
+    </data>
+</odoo>

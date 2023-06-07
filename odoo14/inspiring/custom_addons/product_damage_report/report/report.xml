@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="product_damage_report" model="ir.actions.report">
+            <field name="name">Product Damage / Expiry Report</field>
+            <field name="model">product.damage.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">product_damage_report.product_dmg_report_template</field>
+            <field name="report_file">product_damage_report.product_dmg_report_template</field>
+            <field name="print_report_name">'Product damage Report'</field>
+            <field name="binding_model_id" ref="model_product_damage_report"/>
+            <field name="binding_type">report</field>
+        </record>
+
+    </data>
+</odoo>

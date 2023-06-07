@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_move_out_invoice_print_type" model="ir.actions.act_window">
+        <field name="name">Customer Invoices</field>
+        <field name="res_model">account.move</field>
+    </record>
+
+    <menuitem id="print_invoicest_menu" name="Invoices" action="action_move_out_invoice_print_type" web_icon="print_invoices,static/description/icon.png" groups="print_invoices.account_invoice_print" />
+    <menuitem action="action_move_out_invoice_print_type" id="menu_print_invoicest_action" parent="print_invoicest_menu" groups="print_invoices.account_invoice_print"/>
+</odoo>

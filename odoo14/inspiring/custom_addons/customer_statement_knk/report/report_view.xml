@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <report id="customer_statement_pdf" model="res.partner" string="Customer Statement" report_type="qweb-pdf" name="customer_statement_knk.report_customer_statement_pdf" file="Customer Statement" menu="False" />
+
+    
+    <record id="paperformat_customer_statement" model="report.paperformat">
+        <field name="name">Customer Statement</field>
+        <field name="default" eval="False" />
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">0</field>
+        <field name="margin_bottom">0</field>
+        <field name="margin_left">10</field>
+        <field name="margin_right">10</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+        <field name="report_ids" eval="[(6,0,[ref('customer_statement_knk.customer_statement_pdf')])]" />
+    </record>
+</odoo>

@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_credit_request_user,credit.request,model_credit_request,,1,1,1,1
+access_credit_attachment,credit.attachment,model_credit_attachment,,1,1,1,1
+access_credit_attachment_list,credit.attachment.list,model_credit_attachment_list,,1,1,1,1
+mofawad,mofawad,model_mofawad,,1,1,1,1
+com_ref,com_ref,model_com_ref,,1,1,1,1
+banks,banks,model_banks,,1,1,1,1
+company_owner,company_owner,model_company_owner,,1,1,1,1
+
+

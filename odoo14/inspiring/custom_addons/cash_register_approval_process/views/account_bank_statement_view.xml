@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	 <record id="view_account_bank_statement_view_inherit" model="ir.ui.view">
+	    <field name="name">account_bank_statement_view_inherit</field>
+	    <field name="model">account.bank.statement</field>
+	    <field name="inherit_id" ref="account.view_bank_statement_form"/>
+	    <field name="arch" type="xml">
+	    	<field name="state" position="attributes"> 
+	    		<attribute name="invisible">1</attribute>
+	    	</field>
+	    	<field name="state" position="after"> 
+				<field name="state_of_statement" widget="statusbar"/>
+			</field>
+	        <field name="currency_id" position="after">
+				<field name="is_cashier_group" invisible="1"/>
+				<field name="confirmed_internal_transfer" invisible="1"/>	        	
+	        </field>
+	        
+	    	<xpath expr="//header/button[@name='action_bank_reconcile_bank_statements']" position="attributes">
+				    <attribute name="attrs">{'invisible':['|','|','|',('all_lines_reconciled','=',True),('line_ids','=',[]),('state', '!=', 'posted'),('state_of_statement','!=','transferred')]}</attribute>
+				    <attribute name="groups">cash_register_approval_process.group_only_create_cash_register_entry</attribute>
+	        </xpath>
+				<xpath expr="//header" position="inside" >
+				<button name="set_status_to_submit" string="Submit" type="object" class="oe_highlight" groups="cash_register_approval_process.group_only_create_cash_register_entry" attrs="{'invisible': [('state_of_statement','!=','new')]}"/>	
+	        	<button name="set_state_to_first_approval" string="First Approval" type="object" groups="cash_register_approval_process.group_first_approval_cash_entries" class="oe_highlight" attrs="{'invisible': [('state_of_statement','!=','submitted')]}"/>
+				<button name="set_internal_transfer_entry" string="Internal Transfer" type="object" class="oe_highlight" groups="cash_register_approval_process.group_user_internal_transfer" attrs="{'invisible': [('state_of_statement','!=','final')]}"/>
+				<button name="set_status_to_final_approval" string="Final Approval" type="object" class="oe_highlight" groups="cash_register_approval_process.group_final_approval_cash_register" attrs="{'invisible': [('state_of_statement','!=','first')]}" />	        	
+	        </xpath>
+			
+	       	
+	       <xpath expr="//header/button[@name='%(account.action_cash_box_out)d']" position="attributes">
+				<attribute name="invisible">1</attribute>
+	       	</xpath> 
+	       
+	        <field name="journal_id" position="attributes">
+	        	<attribute name="readonly">1</attribute>
+	        </field>
+	      	  
+	        <xpath expr="//header/button[@name='button_post']" position="attributes">
+				<attribute name="invisible">1</attribute>
+	       	</xpath>
+	        
+	        <field name="name" position="attributes">
+	        	<attribute name="attrs">{'readonly':['|',('state_of_statement','!=','new'),('is_cashier_group','=',False)]}</attribute>
+	        </field>
+	        
+	        <field name="date" position="attributes">
+	        	<attribute name="attrs">{'readonly':['|',('state_of_statement','!=','new'),('is_cashier_group','=',False)]}</attribute>
+	        </field>
+	        
+	        
+	        <field name="balance_start" position="attributes">
+	        	<attribute name="attrs">{'readonly':['|',('state_of_statement','!=','new'),('is_cashier_group','=',False)]}</attribute>
+	        </field>
+	        
+	        <field name="balance_end_real" position="attributes">
+	        	<attribute name="attrs">{'readonly':['|',('state_of_statement','!=','new'),('is_cashier_group','=',False)]}</attribute>
+	        </field>
+	        
+	        <field name="journal_id" position="before">
+	        	<field name="sr_no"/>
+	        </field>
+	    </field>
+	</record>
+</odoo>

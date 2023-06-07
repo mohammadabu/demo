@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Add Smart Button in Purchase View -->
+    <record model="ir.ui.view" id="inherit_purchase_form_view">
+        <field name="name">inherit.purchase.form.view</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]/button[@name='action_view_invoice']" position="before">
+                <button name="total_vendor_bills_amount"
+                        type="object"
+                        class="oe_stat_button order-3"
+                        icon="fa-pencil-square-o">
+                    <field name="vendor_bills_total_amount" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+
+    <!-- Purchase Quotation Tree View -->
+    <record id="inherit_purchase_order_quotation_tree_view" model="ir.ui.view">
+        <field name="name">inherit.purchase.order.quotation.tree.view</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_tree"/>
+        <field name="arch" type="xml">
+            <field name="amount_total" position="before">
+                <field name="vendor_bills_total_amount" string="Total Bills Amount"
+                       widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Purchase Order Tree View -->
+    <record id="inherit_purchase_order_tree_view" model="ir.ui.view">
+        <field name="name">inherit.purchase.order.tree.view</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+        <field name="priority" eval="16"/>
+        <field name="arch" type="xml">
+            <field name="amount_total" position="before">
+                <field name="vendor_bills_total_amount" string="Total Bills Amount"
+                       widget="monetary" options="{'currency_field': 'currency_id'}"/>
+            </field>
+        </field>
+    </record>
+</odoo>

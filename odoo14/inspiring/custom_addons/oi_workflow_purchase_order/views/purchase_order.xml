@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+	<record id="purchase_order_form" model="ir.ui.view">
+		<field name="name">purchase.order.form</field>
+		<field name="model">purchase.order</field>
+		<field name="inherit_id" ref="purchase.purchase_order_form" />
+		<field name="priority">100</field>
+		<field name="arch" type="xml">
+			<button name="button_approve" position="replace" />
+			<button name="button_confirm" id="draft_confirm" position="attributes">
+				<attribute name="states">none</attribute>
+			</button>			
+			<button name="button_confirm" id="bid_confirm" position="attributes">
+				<attribute name="states">none</attribute>
+			</button>						
+			<button name="button_confirm" id="draft_confirm" position="after">
+				<field name="user_can_approve" invisible="1" />
+				<field name="workflow_states" invisible="1" />
+				<field name="button_approve_enabled" invisible="1" />
+				<field name="button_forward_enabled" invisible="1" />
+				<field name="button_return_enabled" invisible="1" />														
+				<field name="approve_button_name" invisible="1" />
+				<field name="approve_confirm_msg" invisible="1" />
+				<field name="reject_button_wizard" invisible="1" />
+				<field name="reject_button_name" invisible="1" />
+				<field name="reject_confirm_msg" invisible="1" />
+				<button name="action_approve" type="object" string="Confirm" class="oe_highlight" states="draft" />
+				<button name="action_approve" type="object" string="Approve" class="oe_highlight oe_workflow_approve" attrs="{'invisible' : [('user_can_approve','=', False)]}" />
+				<button name="action_reject_wizard" type="object" string="Reject" class="oe_workflow_reject" attrs="{'invisible' : ['|', '|', ('user_can_approve','=', False), ('reject_button_name', '=', False), ('reject_button_wizard', '=', False)]}" />
+				<button name="action_reject" type="object" string="Reject" class="oe_workflow_reject" attrs="{'invisible' : ['|','|', ('user_can_approve','=', False), ('reject_button_name', '=', False), ('reject_button_wizard', '=', True)]}" />
+				<button name="action_draft" type="object" confirm="Reset to draft ?" string="Reset to draft" states="rejected" />
+				<button name="action_forward" type="object" string="Forward" attrs="{'invisible' : [('button_forward_enabled','=', False)]}" />
+				<button name="action_return" type="object" string="Return" attrs="{'invisible' : [('button_return_enabled','=', False)]}" />														
+			</button>			
+			<button name="button_draft" position="attributes">
+				<attribute name="states">cancel,rejected</attribute>
+			</button>
+			<button name="button_cancel" position="attributes">
+				<attribute name="states">draft,sent,purchase</attribute>
+			</button>
+			<field name="state" position="attributes">
+				<attribute name="statusbar_visible" />
+			</field>
+		</field>
+	</record>
+	
+</odoo>

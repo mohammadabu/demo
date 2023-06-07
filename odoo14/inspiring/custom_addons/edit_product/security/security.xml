@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- <record id="group_edit_product" model="res.groups">
+        <field name="name">edit_product</field>
+    </record> -->
+</odoo>

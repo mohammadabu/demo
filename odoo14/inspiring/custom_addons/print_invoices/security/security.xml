@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_print_invoices" model="ir.module.category">
+        <field name="name">Invoices</field>
+        <field name="sequence">23</field>
+    </record>
+    <record id="account_invoice_print" model="res.groups">
+        <field name="name">Invoices Print</field>
+        <field name="category_id" ref="print_invoices.module_print_invoices"/>
+        <!-- <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/> -->
+    </record>
+    <!-- <record id="account.partner_view_buttons" model="ir.ui.view">
+        <field name="groups_id" eval="[(4, (ref('print_invoices.account_invoice_print'),))]"/>
+    </record> -->
+</odoo>

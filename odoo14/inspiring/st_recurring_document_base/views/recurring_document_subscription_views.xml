@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="recurring_document_subscription_view_tree"
+		model="ir.ui.view">
+		<field name="model">recurring.document.subscription</field>
+		<field name="arch" type="xml">
+			<tree>
+				<field name="name" />
+				<field name="model" />
+				<field name="res_id" />
+			</tree>
+		</field>
+	</record>
+
+	<record id="recurring_document_subscription_view_form"
+		model="ir.ui.view">
+		<field name="model">recurring.document.subscription</field>
+		<field name="arch" type="xml">
+			<form string="Sub State Type" name="base_substate_type">
+				<sheet>
+					<div class="oe_title">
+						<label for="name" class="oe_edit_only" />
+						<h1>
+							<field name="name" />
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="model" groups="base.group_no_one" />
+							<field name="model_id" invisible="1" />
+							<field name="res_id" groups="base.group_no_one" />
+							<field name="active" />
+							<field name="interval_number" />
+							<field name="interval_type" />
+						</group>
+						<group>
+							<field name="numbercall" />
+							<field name="next_date" />
+							<field name="notes" />
+						</group>
+					</group>
+					<notebook>
+						<page string="Default Values">
+							<field name="default_field_ids">
+								<tree editable="bottom">
+									<field name="field" />
+									<field name="value" />
+								</tree>
+							</field>
+						</page>
+						<page string="Server Actions">
+							<field name="server_action_ids" context="{'default_model_id':model_id}">
+								<tree>
+									<field name="name" />
+								</tree>
+							</field>
+						</page>
+						<page string="History">
+							<field name="history_line_ids">
+								<tree>
+									<field name="document_ref" />
+									<field name="create_date" />
+									<field name="document_deleted" invisible="1"/>
+									<button string="Document Deleted" icon="fa-trash"
+										attrs="{'invisible': [('document_deleted', '=', False)]}" />
+								</tree>
+							</field>
+						</page>
+					</notebook>
+				</sheet>
+			</form>
+		</field>
+	</record>
+
+	<record id="recurring_document_subscription_view_search"
+		model="ir.ui.view">
+		<field name="model">recurring.document.subscription</field>
+		<field name="arch" type="xml">
+			<search string="Sub State Type">
+				<field name="name" />
+				<field name="model" />
+				<field name="res_id" />
+			</search>
+		</field>
+	</record>
+
+	<record model="ir.actions.act_window"
+		id="act_open_recurring_document_subscription_view">
+		<field name="name">Recurring Documents</field>
+		<field name="type">ir.actions.act_window</field>
+		<field name="res_model">recurring.document.subscription</field>
+		<field name="view_mode">tree,form</field>
+		<field name="search_view_id"
+			ref="recurring_document_subscription_view_search" />
+	</record>
+
+	<menuitem id="menu_recurring_recurring_document"
+		parent="st_recurring_document_base.menu_recurring" sequence="10"
+		action="act_open_recurring_document_subscription_view" />
+</odoo>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+       
+       <record id="module_account_bank_statement_approval" model="ir.module.category">
+            <field name="name">Cash Register Approval</field>
+            <field name="sequence">20</field>
+       </record>
+    	
+       <record id="group_only_create_cash_register_entry" model="res.groups">
+	        <field name="name">Create Cash Register Entry</field>
+	        <field name="category_id" ref="module_account_bank_statement_approval"/>
+	   </record> 
+	           
+       <record id="group_first_approval_cash_entries" model="res.groups">
+	        <field name="name">First Approval</field>
+			<field name="category_id" ref="module_account_bank_statement_approval"/>
+	   </record>
+	   
+	   <record id="group_final_approval_cash_register" model="res.groups">
+	        <field name="name">Final Approval</field>
+	        <field name="category_id" ref="module_account_bank_statement_approval"/>	
+	   </record>
+	   
+	   <record id="group_user_internal_transfer" model="res.groups">
+	        <field name="name">Internal Transfer</field>
+	        <field name="category_id" ref="module_account_bank_statement_approval"/>	
+	   </record>
+	   
+	 </data>    
+</odoo>

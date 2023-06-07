@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_aged_balance_excel_view" model="ir.ui.view">
+        <field name="name">Aged Partner Balance</field>
+        <field name="model">account.aged.trial.balance</field>
+        <field name="inherit_id" ref="base_accounting_kit.account_aged_balance_view"/>
+        <field name="arch" type="xml">
+            <button name="check_report" position="after">
+                or
+                <button name="check_report" string="Print Excel"
+                        type="object" class="oe_highlight"
+                        context="{'excel_report':1}"
+                />
+            </button>
+        </field>
+    </record>
+
+    <record id="accounting_tax_report_excel_view" model="ir.ui.view">
+        <field name="name">Tax Reports</field>
+        <field name="model">kit.account.tax.report</field>
+        <field name="inherit_id" ref="base_accounting_kit.accounting_tax_report_view"/>
+        <field name="arch" type="xml">
+            <button name="check_report" position="after">
+                or
+                <button name="check_report" string="Print Excel"
+                        type="object" class="oe_highlight"
+                        context="{'excel_report':1}"
+                />
+            </button>
+        </field>
+    </record>
+
+    <record id="account_report_partner_ledger_excel_view" model="ir.ui.view">
+        <field name="name">Partner Ledger</field>
+        <field name="model">account.report.partner.ledger</field>
+        <field name="inherit_id" ref="base_accounting_kit.account_report_partner_ledger_view"/>
+        <field name="arch" type="xml">
+            <button name="check_report" position="after">
+                or
+                <button name="check_report" string="Print Excel"
+                        type="object" class="oe_highlight"
+                        context="{'excel_report':1}"
+                />
+            </button>
+        </field>
+    </record>
+
+    <record id="account_report_print_journal_excel_view" model="ir.ui.view">
+        <field name="name">Journals Audit</field>
+        <field name="model">account.print.journal</field>
+        <field name="inherit_id" ref="base_accounting_kit.account_report_print_journal_view"/>
+        <field name="arch" type="xml">
+            <button name="check_report" position="after">
+                or
+                <button name="check_report" string="Print Excel"
+                        type="object" class="oe_highlight"
+                        context="{'excel_report':1}"
+                />
+            </button>
+        </field>
+    </record>
+
+    <record id="account_report_general_ledger_excel_view" model="ir.ui.view">
+        <field name="name">General Ledger</field>
+        <field name="model">account.report.general.ledger</field>
+        <field name="inherit_id" ref="base_accounting_kit.account_report_general_ledger_view"/>
+        <field name="arch" type="xml">
+            <button name="check_report" position="after">
+                or
+                <button name="check_report" string="Print Excel"
+                        type="object" class="oe_highlight"
+                        context="{'excel_report':1}"
+                />
+            </button>
+        </field>
+    </record>
+
+    <record id="account_report_balance_excel_view" model="ir.ui.view">
+        <field name="name">Trial Balance</field>
+        <field name="model">account.balance.report</field>
+        <field name="inherit_id" ref="base_accounting_kit.account_report_balance_view"/>
+        <field name="arch" type="xml">
+            <button name="check_report" position="after">
+                or
+                <button name="check_report" string="Print Excel"
+                        type="object" class="oe_highlight"
+                        context="{'excel_report':1}"
+                />
+            </button>
+        </field>
+    </record>
+
+    <record id="financial_report_wiz_modified" model="ir.ui.view">
+        <field name="name">Financial Report</field>
+        <field name="model">financial.report</field>
+        <field name="inherit_id" ref="base_accounting_kit.financial_report_wiz_modified"/>
+        <field name="arch" type="xml">
+            <button name="view_report_pdf" position="after">
+                or
+                <button name="view_report_pdf" string="Print Excel"
+                        type="object" class="oe_highlight"
+                        context="{'excel_report':1}"
+                />
+            </button>
+        </field>
+    </record>
+
+</odoo>

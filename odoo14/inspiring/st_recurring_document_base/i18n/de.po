@@ -1,0 +1,245 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#	* st_recurring_document_base
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0+e\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-11-26 20:55+0000\n"
+"PO-Revision-Date: 2020-11-26 20:55+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__active
+msgid "Active"
+msgstr "Aktiv"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_field__create_uid
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_history__create_uid
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__create_uid
+msgid "Created by"
+msgstr "Erstellt von"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_field__create_date
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_history__create_date
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__create_date
+msgid "Created on"
+msgstr "Erstellt am"
+
+#. module: st_recurring_document_base
+#: selection:recurring.document.field,value:0
+msgid "Current Date"
+msgstr "Aktuelles Datum"
+
+#. module: st_recurring_document_base
+#: selection:recurring.document.subscription,interval_type:0
+msgid "Days"
+msgstr "Tage"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_field__value
+msgid "Default Value"
+msgstr "Standardwert"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__default_field_ids
+#: model_terms:ir.ui.view,arch_db:st_recurring_document_base.recurring_document_subscription_view_form
+msgid "Default Values"
+msgstr "Standardwerte"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,help:st_recurring_document_base.field_recurring_document_field__value
+msgid "Default value is considered for field when new document is generated."
+msgstr "Standardwert wird geneutzt, wenn ein neues Dokument erstellt wird"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document__display_name
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_field__display_name
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_history__display_name
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__display_name
+msgid "Display Name"
+msgstr "Anzeigename"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__history_line_ids
+msgid "Documents created"
+msgstr "Dokumente erstellt"
+
+#. module: st_recurring_document_base
+#: selection:recurring.document.field,value:0
+msgid "False"
+msgstr "Leer"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_field__field
+msgid "Field"
+msgstr "Feld"
+
+#. module: st_recurring_document_base
+#: model_terms:ir.ui.view,arch_db:st_recurring_document_base.recurring_document_subscription_view_form
+msgid "History"
+msgstr "Historie"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document__id
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_field__id
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_history__id
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__id
+msgid "ID"
+msgstr "ID"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,help:st_recurring_document_base.field_recurring_document_subscription__active
+msgid "If the active field is set to False, it will allow you to hide the subscription without removing it."
+msgstr "Wenn das Aktiv Feld auf Falsch gesetzt wird, dann wird die Subscription nicht weiter beachtet."
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__notes
+msgid "Internal Notes"
+msgstr "Interne Notizen"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__interval_number
+msgid "Interval Qty"
+msgstr "Intervall"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__interval_type
+msgid "Interval Unit"
+msgstr "Intervalleinheit"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document____last_update
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_field____last_update
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_history____last_update
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription____last_update
+msgid "Last Modified on"
+msgstr "Zuletzt geändert am"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_field__write_uid
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_history__write_uid
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__write_uid
+msgid "Last Updated by"
+msgstr "Zuletzt aktualisiert durch"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_field__write_date
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_history__write_date
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__write_date
+msgid "Last Updated on"
+msgstr "Zuletzt aktualisiert am"
+
+#. module: st_recurring_document_base
+#: selection:recurring.document.subscription,interval_type:0
+msgid "Months"
+msgstr "Monate"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__name
+msgid "Name"
+msgstr "Bezeichnung"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__next_date
+msgid "Next Date"
+msgstr "Nächstes Datum"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__numbercall
+msgid "Number of Calls"
+msgstr "Anzahl der Anrufe"
+
+#. module: st_recurring_document_base
+#: code:addons/st_recurring_document_base/models/recurring_document_subscription.py:24
+#, python-format
+msgid "Per Document only 1 Recurring Subscription!"
+msgstr "Pro Dokument immer nur 1 wiederkehrendes Dokument erstellen!"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_history__document_ref
+msgid "Record"
+msgstr "Datensatz"
+
+#. module: st_recurring_document_base
+#: code:addons/st_recurring_document_base/models/recurring_document.py:67
+#, python-format
+msgid "Recurring"
+msgstr "Wiederkehrend"
+
+#. module: st_recurring_document_base
+#: model:ir.model,name:st_recurring_document_base.model_recurring_document_field
+msgid "Recurring Document Fields"
+msgstr "Felder wiederkehrende Dokumente"
+
+#. module: st_recurring_document_base
+#: model:ir.model,name:st_recurring_document_base.model_recurring_document_history
+msgid "Recurring Document History"
+msgstr "Historie wiederkehrende Dokumente"
+
+#. module: st_recurring_document_base
+#: model:ir.model,name:st_recurring_document_base.model_recurring_document_subscription
+msgid "Recurring Document Subscriptions"
+msgstr "Aktive wiederkehrende Dokumente"
+
+#. module: st_recurring_document_base
+#: model:ir.actions.act_window,name:st_recurring_document_base.act_open_recurring_document_subscription_view
+#: model:ir.model,name:st_recurring_document_base.model_recurring_document
+#: model:ir.ui.menu,name:st_recurring_document_base.menu_recurring_document
+msgid "Recurring Documents"
+msgstr "Wiederkehrende Dokumente"
+
+#. module: st_recurring_document_base
+#: model:ir.actions.server,name:st_recurring_document_base.generate_recurring_documents_cron_ir_actions_server
+#: model:ir.cron,cron_name:st_recurring_document_base.generate_recurring_documents_cron
+#: model:ir.cron,name:st_recurring_document_base.generate_recurring_documents_cron
+msgid "Recurring Documents: Generate Documents"
+msgstr "Widerkehrende Dokumente: Erstelle Dokumente"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__res_id
+msgid "Related Document ID"
+msgstr "Zugehörige Dokumenten-ID"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_subscription__model
+msgid "Related Document Model"
+msgstr "Zugehöriges Dokumenten-Modell"
+
+#. module: st_recurring_document_base
+#: model_terms:ir.ui.view,arch_db:st_recurring_document_base.recurring_document_subscription_view_form
+#: model_terms:ir.ui.view,arch_db:st_recurring_document_base.recurring_document_subscription_view_search
+msgid "Sub State Type"
+msgstr "Wiederkehrende Dokumente"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document__subscription_ids
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_field__subscription_id
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document_history__subscription_id
+msgid "Subscription"
+msgstr "Wiederkehrende Dokumente"
+
+#. module: st_recurring_document_base
+#: code:addons/st_recurring_document_base/models/recurring_document_subscription.py:42
+#, python-format
+msgid "This Document has been created from the Recurring Document Subscription: <a href=# data-oe-model=recurring.document.subscription data-oe-id=%d>%s</a>"
+msgstr "Dieses Dokument wurde erstellt durch das Wiederkehrende Dokument: <a href=# data-oe-model=recurring.document.subscription data-oe-id=%d>%s</a>"
+
+#. module: st_recurring_document_base
+#: model:ir.model.fields,field_description:st_recurring_document_base.field_recurring_document__history_subscription_id
+msgid "Triggering Subscription"
+msgstr "Auslösendes Dokument"
+
+#. module: st_recurring_document_base
+#: selection:recurring.document.subscription,interval_type:0
+msgid "Weeks"
+msgstr "Wochen"
+

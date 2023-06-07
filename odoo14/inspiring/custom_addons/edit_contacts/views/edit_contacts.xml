@@ -1,0 +1,96 @@
+<odoo>
+    <data>
+        <record id="edit_contacts_fields" model="ir.ui.view">
+            <field name="name">edit contacts fields</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group/group[1]" position="before">
+                    <field name="title_ar" placeholder="Arabic Title" class="o_title_ar" />
+                </xpath>
+                <xpath expr="//group/group[1]" position="inside">
+                    <field name="cr_number" placeholder="Company Registration Number" class="o_cr_number"/>
+                </xpath>
+                <xpath expr="//group/group[1]" position="inside">
+                    <field name="cr_file" class="o_cr_file"/>
+                </xpath>
+                <xpath expr="//group/group[1]" position="inside">
+                    <field name="tax_cert" class="o_tax_cert"/>
+                </xpath>
+                <xpath expr="//field[@name='zip']" position="attributes">
+                    <attribute name="placeholder">Postal Code</attribute>
+                </xpath>
+                <xpath expr="//group/group[2]" position="inside">
+                    <field name="google_maps_coordinates" />
+                </xpath>
+                <xpath expr="//group/group[1]/field[@name='type']" position="before">
+                    <field name="contact_company_type" attrs="{'invisible': [('company_type', '=', 'person')]}"/>
+                </xpath>
+                <xpath expr="//page[@name='sales_purchases']/group/group[2]" position="inside">
+                    <field name="hide_bank_reference" invisible="1" />
+                    <field name="bank_reference" placeholder="Bank Reference" attrs="{'invisible': [('hide_bank_reference', '=', False)]}" />
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="edit_view_contacts_arabic_tree">
+    		<field name="name">res.partner.tree</field>
+    		<field name="model">res.partner</field>
+    		<field name="inherit_id" ref="base.view_partner_tree"/>
+    		<field name="arch" type="xml">
+        		<xpath expr="//field[@name='display_name']" position="after">
+                	<field name="title_ar"/>
+                </xpath>
+    		</field>
+		</record>
+		
+		<record model="ir.ui.view" id="edit_view_contacts_arabic_kanban">
+    		<field name="name">contacts arabic kanban</field>
+    		<field name="model">res.partner</field>
+    		<field name="inherit_id" ref="base.res_partner_kanban_view"/>
+    		<field name="arch" type="xml">
+        		<xpath expr="//kanban/field[@name='title']" position="after">
+                	<field name="title_ar"/>
+                </xpath>
+                <xpath expr="//kanban/templates//t//div//div/strong" position="inside">
+                	<br/><field name="title_ar"/>
+                </xpath>
+    		</field>
+		</record>
+
+        <record id="edit_view_res_partner_filter" model="ir.ui.view">
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='name']" position="after">
+                	<field name="title_ar"/>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Create Menu Item to go to the payment types model -->
+        <record id="get_payment_location" model="ir.actions.act_window">
+            <field name="name">payment location</field>
+            <field name="res_model">account.payment.method</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click to Create a New Record.
+                </p>
+            </field>
+        </record>
+
+        <act_window
+        id="action_account_partner_ledger"
+        name="Partner Ledger"
+        context="{'default_partner_ids': active_ids}"
+        binding_model="res.partner"
+        res_model="ins.partner.ledger"
+        view_mode="form"
+        target="new" />
+
+        <menuitem action="get_payment_location" id="get_purchase_id" parent="contacts.menu_contacts"
+                  name="Get Purchase ID" sequence="5"/>
+        <!-- End of Create Menu Item to go to the payment types model -->
+    </data>
+</odoo>

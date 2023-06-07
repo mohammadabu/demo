@@ -1,0 +1,270 @@
+@font-face {
+    font-family: 'Niconne';
+    src: url('Niconne-Regular.woff2') format('woff2'), url('Niconne-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Black.woff2') format('woff2'), url('Poppins-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-ExtraBold.woff2') format('woff2'), url('Poppins-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-Bold.woff2') format('woff2'), url('Poppins-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('Poppins-ExtraLight.woff2') format('woff2'), url('Poppins-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins', sans-serif;
+    src: url('Poppins-Regular.woff2') format('woff2'), url('Poppins-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins', sans-serif;
+    src: url('Poppins-Light.woff2') format('woff2'), url('Poppins-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins', sans-serif;
+    src: url('Poppins-Medium.woff2') format('woff2'), url('Poppins-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins', sans-serif;
+    src: url('Poppins-SemiBold.woff2') format('woff2'), url('Poppins-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins', sans-serif;
+    src: url('Poppins-Thin.woff2') format('woff2'), url('Poppins-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+a,
+li,
+p {
+    font-family: 'Poppins', sans-serif;
+}
+
+button:focus {
+    outline: none !important;
+}
+
+header.mt-5 img {
+    border-bottom: 2px solid #ced6e8;
+}
+
+section.description h1 {
+    color: #003b6e;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+section.description p {
+    color: #768ea3;
+    font-size: 17px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card.slide_card {
+    border: none;
+    padding: 50px;
+    border-radius: 18px;
+    box-shadow: 0 0 25px 0 #00000021;
+}
+
+.card.slide_card h1 {
+    width: 100%;
+    font-size: 173px;
+    text-align: center;
+    font-weight: 600;
+    color: #dde5ee;
+}
+
+.card.slide_card h2 {
+    font-size: 24px;
+    color: #003b6e;
+    font-weight: 700;
+}
+
+.owl-nav {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    font-size: 57px;
+}
+
+#screen-slide .owl-nav button.owl-prev {
+    background: 16 16px;
+    color: inherit;
+    border: none;
+    padding: 0!important;
+    background: #003b6e;
+    font: inherit;
+    text-align: center;
+    padding: 10px !important;
+    border-radius: 56px;
+    width: 57px;
+    height: 57px;
+    color: #fff;
+    font-size: 16px;
+    margin-right: 15px !important;
+}
+
+#screen-slide .owl-nav button.owl-next {
+    background: 16 16px;
+    color: inherit;
+    border: none;
+    padding: 0!important;
+    background: #98c0e2;
+    font: inherit;
+    text-align: center;
+    padding: 10px !important;
+    border-radius: 56px;
+    width: 57px;
+    height: 57px;
+    font-size: 16px;
+    color: #fff;
+}
+
+#screen-slide button.owl-next img,
+#screen-slide button.owl-prev img {
+    display: block;
+    margin: auto;
+    width: 25px;
+}
+
+section.screen_bg {
+    background-color: #195ca2;
+    color: #fff3;
+    height: 224px;
+    margin-top: -149px;
+    padding-top: 48px;
+}
+
+.bg_img_scroll {
+    background-image: url(../images/bg_scroll.jpg);
+    height: 10vh;
+    background-position: center;
+}
+
+section.features h1 {
+    color: #003b6e;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+section.features h5 {
+    color: #768ea3;
+    font-size: 17px;
+    max-width: 900px;
+}
+
+.features_bg {
+    background: #ededed;
+    padding: 14px 19px !important;
+    border-radius: 11px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.d-flex.features_bg.mt-3 img {
+    width: 17px;
+    height: 17px;
+    margin-right: 28px;
+    margin-top: 2px;
+}
+
+section.features p {
+    color: #768ea3;
+    font-size: 17px;
+    max-width: 900px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.suggested_products h1 {
+    color: #003b6e;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+div#product-slide img {
+    border-radius: 9px;
+    box-shadow: 0 0 8px 0 #ccc;
+}
+
+.ftr {
+    border-top: 2px solid #e6f0fa;
+    padding-top: 57px;
+}
+
+.ftr h5 {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 26px;
+    font-weight: 300;
+    color: #003b6e;
+    border-right: 1px solid #115294;
+}
+
+.ftr img {
+    box-shadow: 2px 10px 16px 0 #19578924;
+    border-radius: 50px;
+}
+
+.ftr p {
+    color: #768ea3;
+    font-size: 17px;
+    max-width: 900px;
+    text-align: center;
+    margin-top: 15px;
+}
